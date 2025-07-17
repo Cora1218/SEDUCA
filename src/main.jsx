@@ -1,19 +1,31 @@
-// 1️⃣ Importa el CSS de Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-// 2️⃣ Importa funciones de React y React DOM
+// Import functions of React and React DOM
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-// 3️⃣ Importa el archivo de estilos CSS personalizados (si se usa)
+
+// Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
+// Bootstrap Icons (to display the icons of Facebook, Twitter, etc.)
+import 'bootstrap-icons/font/bootstrap-icons.css';
+// JS of Bootstrap
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+// import custom css
 import './index.css'
-// 4️⃣ Importa el componente principal: App.jsx
+//  Main app component
 import App from './App.jsx' 
 
-// 5️⃣ Conecta React con el <div id="root"> de index.html y renderiza la app
-// ✅ Aquí ocurre la "inyección":
-//    React toma control del <div id="root"> del index.html, y coloca ahí lo que retorna el componente App.
+/* 
+ * File: main.jsx
+ * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
+ * Created on: 2025-07-04
+ * Last modified: 2025-07-17
+ * Description: Main entry point for the application
+ */
+
+// Connect React to the <div id="root"> of index.html and render the app
+// Here the “injection” takes place
+// React takes control of the <div id="root"> of the index.html, and places there what the App component returns.
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>, 
 )

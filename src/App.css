@@ -1,3 +1,11 @@
+/* 
+ * File: App.css
+ * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
+ * Created on: 2025-07-04
+ * Last modified: 2025-07-17
+ * Description: Styles for the main application layout, including responsive design and theming.
+ */
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
