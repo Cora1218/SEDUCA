@@ -12,7 +12,7 @@ function Carousel() {
   return (
     <>
       {/* Banner carousel */}
-      <section className="py-4 bg-light">
+      <section className="py-4 bg-white">
         <div className="container-fluid px-0">
           <div id="carouselSeduca" className="carousel slide" data-bs-ride="carousel">
             
