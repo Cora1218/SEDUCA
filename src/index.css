@@ -2,7 +2,7 @@
  * File: index.css
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-04
- * Last modified: 2025-07-17
+ * Last modified: 2025-08-06
  * Description: Styles for the main application layout, including responsive design and theming.
  */
 
@@ -155,6 +155,17 @@ a:hover {
   color: #96841a;
   font-weight: bold;
   margin-right: 0.2rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;              
+  font-size: 0.9rem;         
+  padding: 0 0.75rem;        /* Space between links */
+}
+
+.nav-link:hover {
+  color: #2c5234;            
 }
 
 /* Title with line styles */
