@@ -2,7 +2,9 @@ import PanelLayout from "../components/PanelLayout";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import { Bell, HelpCircle, Menu, User } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import api from "../api"; // Import the API client
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css"; // Calendar styles
 
@@ -10,20 +12,51 @@ import "react-calendar/dist/Calendar.css"; // Calendar styles
  * File: PanelPrincipal.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-08-05
- * Last modified: 2025-08-27
+ * Last modified: 2025-09-19
  * Description: Main component for the main panel page.
  */
 
 const PanelPrincipal = () => {
+  const [backendMessage, setBackendMessage] = useState("");
+  useEffect(() => {
+    api.get("/")
+      .then((response) => {
+        setBackendMessage(response.data.message);
+      })
+      .catch((error) => {
+        console.error("Error al conectar con backend:", error);
+      });
+}, []);
+
   // State to manage the visibility of the menu
-  const [hasCommunities, setHasCommunities] = useState(true); // Example state, can be modified based on actual data
-  const [date, setDate] = useState(new Date());
+  // const [hasCommunities, setHasCommunities] = useState(true); // Example state, can be modified based on actual data
+  const [date, setDate] = useState(new Date()); // Stores the date selected by the calendar
+  const hasEbooks = true; // False if there aren't any ebooks
+  const hasAnnouncements = true; // False if there aren't any announcements
+  const [communities, setCommunities] = useState([]); // Here we will store the data from /subject
+  const [loading, setLoading] = useState(true); // State to control loading
+
+  useEffect(() => {
+    // Call to backend to get subjects
+    axios.get("http://localhost:3000/subject")
+      .then(response => {
+        setCommunities(response.data); //  Save the data fetched from the backend
+      })
+      .catch(error => {
+        console.error("Error al obtener las comunidades:", error);
+        setCommunities([]); // If an error occurs, leave it empty
+      })
+      .finally(() => setLoading(false)); // // Finished loading, whether error or success
+  }, []); // The empty array means this runs only once when the component mounts
 
   return (
     <>
+      {/* Backend connection message */}
+      <p className="text-success text-center mt-2">🔗 {backendMessage}</p>
+
       <Header />
       {/* Top bar with custom icons */}
-      <nav className="navbar bg-white shadow sticky-top py-3 px-3">
+      <nav className="navbar bg-white shadow sticky-top py-2 px-3">
         <div className="container-fluid d-flex justify-content-between align-items-center">
           {/* Scrollable menu */}
           <div
@@ -40,62 +73,58 @@ const PanelPrincipal = () => {
             <>
               <a
                 href="#"
-                className={`nav-link px-2 ${
-                  !hasCommunities ? "disabled text-muted" : ""
-                }`}
-                onClick={(e) => !hasCommunities && e.preventDefault()}
-                tabIndex={hasCommunities ? 0 : -1}
-                aria-disabled={!hasCommunities}
+                className={`nav-link px-2 ${(!loading && communities.length === 0) ? "disabled text-muted" : ""}`}
+                onClick={(e) => (!loading && communities.length === 0) && e.preventDefault()}
+                tabIndex={(!loading && communities.length === 0) ? -1 : 0}
+                aria-disabled={!loading && communities.length === 0}
               >
                 COMUNIDADES
               </a>
+
               <a
                 href="#"
-                className={`nav-link px-2 ${
-                  !hasCommunities ? "disabled text-muted" : ""
-                }`}
-                onClick={(e) => !hasCommunities && e.preventDefault()}
-                tabIndex={hasCommunities ? 0 : -1}
+                className={`nav-link px-2 ${(!loading && communities.length === 0) ? "disabled text-muted" : ""}`}
+                onClick={(e) => (!loading && communities.length === 0) && e.preventDefault()}
+                tabIndex={(!loading && communities.length === 0) ? -1 : 0}
+                aria-disabled={!loading && communities.length === 0}
               >
                 MIS EBOOKS
               </a>
               <a
                 href="#"
-                className={`nav-link px-2 ${
-                  !hasCommunities ? "disabled text-muted" : ""
-                }`}
-                onClick={(e) => !hasCommunities && e.preventDefault()}
-                tabIndex={hasCommunities ? 0 : -1}
+                className={`nav-link px-2 ${(!loading && communities.length === 0) ? "disabled text-muted" : ""}`}
+                onClick={(e) => (!loading && communities.length === 0) && e.preventDefault()}
+                tabIndex={(!loading && communities.length === 0) ? -1 : 0}
+                aria-disabled={!loading && communities.length === 0}
               >
                 ADMINISTRADOR DE CONTENIDOS
               </a>
               <a
                 href="#"
-                className={`nav-link px-2 ${
-                  !hasCommunities ? "disabled text-muted" : ""
-                }`}
-                onClick={(e) => !hasCommunities && e.preventDefault()}
-                tabIndex={hasCommunities ? 0 : -1}
+                className={`nav-link px-2 ${(!loading && communities.length === 0) ? "disabled text-muted" : ""}`}
+                onClick={(e) => (!loading && communities.length === 0) && e.preventDefault()}
+                tabIndex={(!loading && communities.length === 0) ? -1 : 0}
+                aria-disabled={!loading && communities.length === 0}
               >
                 COORDINACIÓN
               </a>
               <a
                 href="#"
-                className={`nav-link px-2 ${
-                  !hasCommunities ? "disabled text-muted" : ""
-                }`}
-                onClick={(e) => !hasCommunities && e.preventDefault()}
-                tabIndex={hasCommunities ? 0 : -1}
+                className={`nav-link px-2 ${(!loading && communities.length === 0) ? "disabled text-muted" : ""}`}
+                onClick={(e) => (!loading && communities.length === 0) && e.preventDefault()}
+                tabIndex={(!loading && communities.length === 0) ? -1 : 0}
+                aria-disabled={!loading && communities.length === 0}
               >
                 DUDAS TÉCNICAS Y ACADÉMICAS
               </a>
               <a
                 href="#"
-                className={`nav-link px-2 ${
-                  !hasCommunities ? "disabled text-muted" : ""
+                className={`nav-link px-2 ${(!loading && communities.length === 0)
+                  ? "disabled text-muted" : ""
                 }`}
-                onClick={(e) => !hasCommunities && e.preventDefault()}
-                tabIndex={hasCommunities ? 0 : -1}
+                onClick={(e) => (!loading && communities.length === 0) && e.preventDefault()}
+                tabIndex={(!loading && communities.length === 0) ? -1 : 0}
+                aria-disabled={!loading && communities.length === 0}
               >
                 SERVICIOS ESCOLARES
               </a>
@@ -109,22 +138,22 @@ const PanelPrincipal = () => {
             // style={{ width: "120px" }}
           >
             <button
-              className={`btn btn-link ${
-                !hasCommunities ? "text-muted disabled" : "text-dark"
+              className={`btn btn-link ${(!loading && communities.length === 0)
+                ? "text-muted disabled" : "text-dark"
               }`}
-              onClick={(e) => !hasCommunities && e.preventDefault()}
-              tabIndex={hasCommunities ? 0 : -1}
-              aria-disabled={!hasCommunities}
+              onClick={(e) => (!loading && communities.length === 0) && e.preventDefault()}
+              tabIndex={(!loading && communities.length === 0) ? -1 : 0}
+              aria-disabled={!loading && communities.length === 0}
             >
               <Bell size={20} />
             </button>
             <button
-              className={`btn btn-link ${
-                !hasCommunities ? "text-muted disabled" : "text-dark"
+              className={`btn btn-link ${(!loading && communities.length === 0)
+                ? "text-muted disabled" : "text-dark"
               }`}
-              onClick={(e) => !hasCommunities && e.preventDefault()}
-              tabIndex={hasCommunities ? 0 : -1}
-              aria-disabled={!hasCommunities}
+              onClick={(e) => (!loading && communities.length === 0) && e.preventDefault()}
+              tabIndex={(!loading && communities.length === 0) ? -1 : 0}
+              aria-disabled={!loading && communities.length === 0}
             >
               <HelpCircle size={20} />
             </button>
@@ -132,12 +161,12 @@ const PanelPrincipal = () => {
               <User size={20} />
             </button>
             <button
-              className={`btn btn-link ${
-                !hasCommunities ? "text-muted disabled" : "text-dark"
+              className={`btn btn-link ${(!loading && communities.length === 0)
+                ? "text-muted disabled" : "text-dark"
               }`}
-              onClick={(e) => !hasCommunities && e.preventDefault()}
-              tabIndex={hasCommunities ? 0 : -1}
-              aria-disabled={!hasCommunities}
+              onClick={(e) => (!loading && communities.length === 0) && e.preventDefault()}
+              tabIndex={(!loading && communities.length === 0) ? -1 : 0}
+              aria-disabled={!loading && communities.length === 0}
             >
               <Menu size={20} />
             </button>
@@ -149,9 +178,10 @@ const PanelPrincipal = () => {
       <PanelLayout>
         {/* <section className="my-4"> */}
           {/* <div className="row g-4"> */}
+
             {/* Community card */}
             <div className="col-12 col-md-9">
-              <div className="card shadow-sm border-0">
+              <div className="card shadow-sm border-success mb-3">
                 <div
                   className="card-header bg-custom-green text-white header-xs"
                   style={{
@@ -160,42 +190,114 @@ const PanelPrincipal = () => {
                 >
                   COMUNIDADES FAVORITAS
                 </div>
-                <div className="card-body border border-success border-top-0 d-flex flex-column align-items-start overflow-auto w-100">
-                  {hasCommunities ? (
-                    // <p className="text-dark fs-6 fs-md-5">
-                    //   Aquí irán las comunidades...
-                    // </p>
-                    <>
-                      <div className="comunidad-responsive text-start">
-                        Comunidad 1
-                      </div>
-                      <div className="comunidad-responsive text-start">
-                        Comunidad 2
-                      </div>
-                      <div className="comunidad-responsive text-start">
-                        Comunidad 3
-                      </div>
-                      <div className="comunidad-responsive text-start">
-                        Comunidad 4
-                      </div>
-                      <div className="comunidad-responsive text-start">
-                        Comunidad 5
-                      </div>
-                      <div className="comunidad-responsive text-start">
-                        Comunidad 6
-                      </div>
-                    </>
-                  ) : (
-                    <p className="text-danger text-center fw-bold fs-6 fs-md-5">
-                      No tienes comunidades favoritas.
+                <div className="card-body comunidades-body border border-0 border-top-0 d-flex flex-column align-items-start overflow-auto w-100">
+                  {loading ? (
+                    <p className="text-dark fs-6 fs-md-5">
+                      Cargando comunidades...
                     </p>
+                  ) : communities.length === 0 ? (
+                    <div className="w-100 text-center">
+                      <p className="text-danger fw-bold text-center fs-6 fs-md-5">
+                        No tienes comunidades favoritas.
+                      </p>
+                    </div>
+                  ) : (
+                    communities.map((community) => (
+                      <div key={community.id} className="comunidad-responsive text-start">
+                        {community.NomEntAsg} {/* Campo del backend */}
+                      </div>
+                    ))
                   )}
                 </div>
               </div>
+
+              {/* MIS EBOOKS */}
+              {hasEbooks && (
+                <div className="card shadow-sm border-0 ">
+                  <div
+                    className="card-header bg-custom-green text-white header-xs"
+                    style={{
+                      textShadow: "1px 1px 2px rgba(0, 0, 0, 0.4)",
+                    }}
+                  >
+                    MIS EBOOKS
+                  </div>
+                  <div className="card-body ebooks-body border border-success border-top-0">
+                      <div className="row">
+                        {/* Ebook 1 */}
+                        <div className="col-md-4 mb-4">
+                          <div className="card shadow-sm h-100">
+                            <img
+                              src="https://via.placeholder.com/300x180"
+                              className="card-img-top"
+                              alt="Ebook 1"
+                            />
+                            <div className="card-body d-flex flex-column">
+                              <h5 className="card-title">
+                                <a href="#ebook1" className="stretched-link text-decoration-none text-dark">Expresión Oral y Escrita</a>
+                              </h5>
+                              <p className="card-text">
+                                Recurso interactivo para mejorar tus habilidades de comunicación.
+                              </p>
+                              {/* <button className="btn btn-primary mt-auto">
+                                Ver Ebook
+                              </button> */}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Ebook 2 */}
+                        <div className="col-md-4 mb-4">
+                          <div className="card shadow-sm h-100">
+                            <img
+                              src="https://via.placeholder.com/300x180"
+                              className="card-img-top"
+                              alt="Ebook 2"
+                            />
+                            <div className="card-body d-flex flex-column">
+                              <h5 className="card-title">
+                                <a href="#ebook2" className="stretched-link text-decoration-none text-dark">Aritmética y Lenguaje Matemático</a>
+                              </h5>
+                              <p className="card-text">
+                                Guía visual para reforzar conceptos de matemáticas básicas.
+                              </p>
+                              {/* <button className="btn btn-primary mt-auto">
+                                Ver Ebook
+                              </button> */}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Ebook 3 */}
+                        <div className="col-md-4 mb-4">
+                          <div className="card shadow-sm h-100">
+                            <img
+                              src="https://via.placeholder.com/300x180"
+                              className="card-img-top"
+                              alt="Ebook 3"
+                            />
+                            <div className="card-body d-flex flex-column">
+                              <h5 className="card-title">
+                                <a href="#ebook3" className="stretched-link text-decoration-none text-dark">Pensamiento Crítico</a>
+                              </h5>
+                              <p className="card-text">
+                                Actividades y lecturas para fortalecer la capacidad de análisis.
+                              </p>
+                              {/* <button className="btn btn-primary mt-auto">
+                                Ver Ebook
+                              </button> */}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Calendar Card */}
-            <div className="col-12 col-md-4 col-lg-3">
+            {/* Right sidebar with calendar and announcements */}
+            <div className="col-12 col-md-3">
+              {/* Calendar Card */}
               <div className="card shadow-sm border-0 calendar-card">
                 <div
                   className="card-header bg-custom-green text-white header-xs"
@@ -203,15 +305,22 @@ const PanelPrincipal = () => {
                 >
                   CALENDARIO
                 </div>
-                <div className="card-body border border-success border-top-0 overflow-auto">
+                <div className="card-body border border-success border-top-0">
                   <Calendar
                     onChange={setDate}
                     value={date}
                     className="react-calendar"
+                    locale="es-ES"
+                    formatShortWeekday={(locale, date) =>
+                      date.toLocaleDateString(locale, { weekday: "narrow" })
+                    }
+                    formatMonthYear={(locale, date) =>
+                      date.toLocaleDateString(locale, { month: "short", year: "numeric" })
+                    }
                   />
 
                   {/* Calendar meaning letters */}
-                  <div className="mt-3">
+                  <div className="mt-1">
                     <p>
                       <span className="fw-bold text-black">Nota:</span> la letra{" "}
                       <span className="fw-bold text-black">A</span> indica la
@@ -241,10 +350,41 @@ const PanelPrincipal = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Announcement card */}
+              {hasAnnouncements && (
+                <div className="card shadow-sm border-0 mt-3">
+                  <div
+                    className="card-header bg-custom-green text-white header-xs"
+                    style={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.4)" }}
+                  >
+                    AVISOS
+                  </div>
+                  <div className="card-body announcements-body border border-success border-top-0">
+                      <div className="list-group">
+                        <a
+                          href="#aviso1"
+                          className="list-group-item list-group-item-action"
+                        >
+                          <strong>Mantenimiento programado:</strong> El sistema estará inactivo el 10 de septiembre.
+                        </a>
+                        <a
+                          href="#aviso2"
+                          className="list-group-item list-group-item-action"
+                        >
+                          <strong>Nuevo recurso:</strong> Ya puedes acceder al curso de Introducción a la Programación.
+                        </a>
+                      </div>
+                  </div>
+                </div>
+              )}
             </div>
           {/* </div> */}
         {/* </section> */}
       </PanelLayout>
+
+      {/* Gold line before the footer */}
+      <div className="gold-line"></div>
 
       <Footer />
     </>

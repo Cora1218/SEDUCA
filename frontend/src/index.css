@@ -1,8 +1,8 @@
-/* 
+/** 
  * File: index.css
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-04
- * Last modified: 2025-08-27
+ * Last modified: 2025-09-18
  * Description: Styles for the main application layout, including responsive design and theming.
  */
 
@@ -13,7 +13,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* background-color: #fff; Before 242424 */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -30,6 +30,7 @@ body,
   padding: 0;
   min-height: 100vh;
   min-width: 320px;
+  background-color: #fff; /* This one wasn't */
 }
 
 h1 {
@@ -243,34 +244,69 @@ a:hover {
 .calendar-card {
   display: flex;
   flex-direction: column;
-  min-height: 400px;
+  min-height: 350px; /* Before 400px*/
 }
 
 /* Responsive settings for the calendar */
-/* On small screens, reduce height */
-@media (max-width: 768px) {
+
+/* Ajustes para tablets grandes (768px a 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Bajamos un poco el calendario */
   .calendar-card {
-    min-height: auto;
+    min-height: auto; /* o un valor fijo como 350px si quieres */
+  }
+
+  /* Ajuste de botones del calendario */
+  .react-calendar__navigation button {
+    min-width: 36px;
+    min-height: 32px;
+    font-size: 0.7rem;
+  }
+
+  /* Iconos de la navbar derecha */
+  .nav-icons-right button {
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+   .nav-icons-right svg {
+    width: 18px;
+    height: 18px;
   }
 }
 
+@media (min-width: 992px) {
+  .nav-icons-right svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
 .calendar-card .card-body {
-  overflow-y: auto;   /* scroll vertical only if necessary */
-  overflow-x: hidden; /* avoid horizontal scroll */
+  /* overflow-y: auto;   scroll vertical only if necessary */
+  /* overflow-x: hidden; avoid horizontal scroll */
+  overflow: visible; /* el calendario se ajusta a su contenido */
+  flex: 1;           /* ocupa todo el alto disponible del card */
+  padding: 0.5rem;        /* elimina espacio extra */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 /* Calendar styles */
 .react-calendar {
-  width: 100% !important;
-  max-width: 100% !important;
+  width: 95% !important; /* Before 100%*/
+  max-width: 350px !important; /* Before 100%*/
   border: none;
   font-family: inherit;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 5px; /* Before 10px */
   border-radius: 15px;               /* rounded edges */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* subtle shadow */
   background-color: #ffffff;         /* white background */
   transition: transform 0.2s, box-shadow 0.2s; /* hover animation */
+  margin: 0 auto; /* centra horizontal */
 }
 
 /* Effect hover: slightly floating */
@@ -279,22 +315,25 @@ a:hover {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* more pronounced shadow */
 }
 
-/* Each cell of the day will be a square */
+/* Day tiles */
 .react-calendar__tile {
-  aspect-ratio: 1 / 1;   /* ensure that they are always square */
-  min-width: 32px;
-  min-height: 32px;
-  flex: 1 0 auto;
+  /* min-width: 26px !important;
+  min-height: 26px !important; */
+  font-size: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ccc;   /* border */
   border-radius: 5px;
-  margin: 2px;
-  font-weight: bold;
+  margin: 2px 0;
   background-color: #f8f9fa;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  color: #000; /* text color */
+  color: #000;
+}
+
+/* Optional: hover to highlight the day */
+.react-calendar__tile:hover {
+  background: #e6e6e6;
+  color: #000;
 }
 
 /* Current day (today) */
@@ -305,66 +344,102 @@ a:hover {
 
 /* Selected day */
 .react-calendar__tile--active {
-  background: #006edc; 
+  background: rgba(0, 128, 0, 0.3) !important; /*#57956d !important;  Before 57956d 7c7139 96841a*/
   color: white;
 }
 
-/* Optional: hover to highlight the day */
-.react-calendar__tile:hover {
-  background: #e6e6e6;
-  color: #000;
-}
-
-/* Adjust the weekdays */
+/* Weekday headers */
 .react-calendar__month-view__weekdays {
+  display: grid;                        /* ✅ convierte en grid */
+  grid-template-columns: repeat(7, 1fr); /* ✅ 7 columnas iguales */
   text-align: center;
   font-weight: bold;
-}
-
-/* Adjust the size of the row so that the tiles do not deform */
-/* .react-calendar__month-view__days {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-} */
-
-/* Responsividad para el calendario */
-@media (max-width: 768px) {
-  .react-calendar{
-    padding: 8px;  /* less padding on tablets */
-  }
-
-  .react-calendar__tile {
-    width: 36px;   /* smallest on tablets */
-    height: 36px;
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .react-calendar__tile {
-    width: 30px;   /* even smaller on mobile phones */
-    height: 30px;
-    font-size: 0.7rem;
-    margin: 1px;   /* reduce space between cells */
-  }
-
-  .react-calendar {
-    padding: 5px;  /* less padding on mobile phones */
-  }
+  font-size: 0.8rem;
+  padding: 0;
+  margin: 0;
 }
 
 .react-calendar__navigation {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  overflow-x: auto;  /* allows scrolling if too narrow */
+  align-items: center;
+  justify-content: space-between; /* distribuye flechas y central */
+  /* text-align: center; */
+  font-weight: bold;
+  font-size: 0.8rem !important;
+  gap: 4px;
+  padding: 0;
+  margin: 0;
+  /* overflow: hidden; */
 }
 
+/* Botones de navegación */
 .react-calendar__navigation button {
-  white-space: nowrap;  /* prevents names from breaking */
-  flex: 1; /* distributes space between buttons */
-  min-width: 50px; /* guarantees minimum size */
+  /* white-space: nowrap;  prevents names from breaking */
+  /* flex: 1; distributes space between buttons */
+  min-width: 40px; /* guarantees minimum size */
+  min-height: 35px;
+  font-size: 0.8rem;
+  color: #000;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;         /* importante para centrar contenido */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Botón central (mes/año) → ocupa el espacio sobrante */
+.react-calendar__navigation button:nth-child(2) {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ====== RESPONSIVE ====== */
+/* Pantallas medianas (hasta 1399px) */
+
+@media (max-width: 1399px) {
+  .react-calendar__navigation button {
+    min-width: 36px;
+    min-height: 32px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Tablets (hasta 992px) */
+@media (max-width: 992px) {
+  .react-calendar__navigation button {
+    min-width: 32px;
+    min-height: 28px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Móviles (hasta 576px) */
+@media (max-width: 576px) {
+  .react-calendar {
+    max-width: 200px;
+    padding: 3px;
+  }
+  .react-calendar__navigation button {
+    min-width: 28px;
+    min-height: 26px;
+    font-size: 0.6rem;
+  }
+  .react-calendar__tile {
+    font-size: 0.65rem;
+  }
+}
+
+/* Legend / notas debajo del calendario */
+.calendar-card .card-body p {
+  font-size: 0.7rem;  /* más pequeño */
+  margin-bottom: 0.25rem;
+}
+.calendar-card .card-body span.fw-bold {
+  font-size: 0.75rem;
 }
 
 .bg-custom-green {
@@ -392,19 +467,93 @@ a:hover {
 
 /* Allows the flex container to shrink without generating overflow */
 .nav-left { 
-  flex: 1 1 auto;     /* puede crecer y encogerse */
-  min-width: 0;       /* evita overflow del contenedor flex */
-  overflow-x: auto;   /* permite scroll horizontal si hace falta */
+  flex: 1 1 auto;     /* can expand and contract */
+  min-width: 0;       /* prevent overflow of the flex container */
+  overflow-x: auto;   /* allows horizontal scrolling if necessary */
   flex-wrap: nowrap;
   gap: 0.5rem;
 }
 
 .nav-icons-right {
-  flex-shrink: 0;     /* no se encogen, siempre visibles */
+  flex-shrink: 0;     /* they do not shrink, always visible */
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* Ajuste altura card de Comunidades Favoritas */
+/* .comunidades-card {
+  height: 500px; 
+} */
+
+.comunidades-body {
+  min-height: 461px;
+}
+
+.ebooks-body {
+  max-height: 500px; /* scroll vertical en pantallas grandes */ 
+  overflow-y: auto;  /* enable vertical scrolling */
+  overflow-x: hidden;    /* 🔹 bloquea el scroll horizontal */
+  padding: 0.5rem;
+  box-sizing: border-box; /* 🔹 asegura que padding no genere overflow */
+}
+
+/* ======= Ajustes para móviles y tablets pequeños (hasta 767px) ======= */
+@media (max-width: 767px) {
+  /* Calendario baja */
+  .calendar-card {
+    /* min-height: auto; */
+    width: 100% !important;  /* que ocupe todo el card */
+    max-width: 100% !important; /* sobreescribe 350px */
+  }
+
+  /* Botones de navegación del calendario */
+  .react-calendar__navigation button {
+    min-width: 28px;
+    min-height: 26px;
+    font-size: 0.6rem;
+  }
+
+  /* Etiqueta de mes y año */
+  .react-calendar__navigation__label {
+    font-size: 0.7rem; /* más pequeño para que quepa */
+  }
+
+  /* Días de la semana */
+  .react-calendar__month-view__weekdays__weekday, 
+  .react-calendar__month-view__weekdays__weekday abbr {  
+    font-size: 0.65rem;
+  }
+
+  .react-calendar__month-view__weekdays {
+    margin-bottom: 0.25rem; /* reduce espacio de filas */
+  }
+
+  /* Iconos de la navbar derecha */
+  .nav-icons-right button {
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+  .nav-icons-right svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .ebooks-body {
+    max-height: 400px; /* más espacio para scroll vertical */
+    padding: 0.5rem;
+  }
+
+  .ebooks-body .col-md-4 {
+    min-width: 250px;  /* cada tarjeta un tamaño mínimo */
+  }
+}
+
+.announcements-body {
+  min-height: 195px; /* adjust as you prefer */
+  /* overflow-y: auto;  enable vertical scrolling */
 }
 
 /* Communities in a single row (100% width) */
@@ -428,42 +577,46 @@ a:hover {
   flex: 0 0 auto; /* prevents icons from shrinking */
   padding: 0.25rem; /* a small padding so that they do not become deformed */
   min-width: 36px; /* minimum width of each icon */
-  min-height: 36px; /* altura mínima */
+  min-height: 36px; /* minimum height of each icon */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Reduce icon size on small screens */
-@media (max-width: 768px) {
-  .nav-icons-right button {
-    min-width: 32px;
-    min-height: 32px;
-  }
-}
-
 @media (max-width: 576px) {
-  .nav-iconos-right button {
+  .nav-icons-right button {
     min-width: 28px;
     min-height: 28px;
   }
 }
 
-.nav-icons-right svg {
-  width: 20px;
-  height: 20px;
-}
-
-@media (max-width: 768px) {
-  .nav-icons-right svg {
-    width: 18px;
-    height: 18px;
-  }
-}
 
 @media (max-width: 576px) {
   .nav-icons-right svg {
     width: 16px;
     height: 16px;
   }
+}
+
+/* My Ebooks responsive */
+.ebook-responsive {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  background-color: #f8f9fa; /* light grey like internal cards */
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.1);
+  font-size: 0.9rem;
+}
+
+/* Scroll adjustment if there are many ebooks */
+.card-body.overflow-auto {
+  max-height: 300px; /* adjust as you prefer */
+}
+
+/* Gold line */
+.gold-line {
+  height: 4px;              /* line thickness */
+  background-color: #96841a;   /* golden colour */
+  width: 100%;              /* occupies the entire width */
 }
