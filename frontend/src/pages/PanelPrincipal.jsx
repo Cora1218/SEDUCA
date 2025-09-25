@@ -1,53 +1,59 @@
+/**
+ * File: frontend/src/pages/PanelPrincipal.jsx
+ * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
+ * Created on: 2025-08-05
+ * Last modified: 2025-09-25
+ * Description: Main component for the main panel page.
+ */
+
 import PanelLayout from "../components/PanelLayout";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import { Bell, HelpCircle, Menu, User } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import api from "../api"; // Import the API client
+import { getBackendMessage } from "../services/backendService";
+import { getCommunities } from "../services/communityService";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css"; // Calendar styles
-
-/**
- * File: PanelPrincipal.jsx
- * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
- * Created on: 2025-08-05
- * Last modified: 2025-09-19
- * Description: Main component for the main panel page.
- */
 
 const PanelPrincipal = () => {
   const [backendMessage, setBackendMessage] = useState("");
   useEffect(() => {
-    api.get("/")
-      .then((response) => {
-        setBackendMessage(response.data.message);
-      })
-      .catch((error) => {
-        console.error("Error al conectar con backend:", error);
-      });
+  const fetchMessage = async () => {
+    try {
+      const message = await getBackendMessage(); // Use the service function
+      setBackendMessage(message);
+    } catch (error) {
+      console.error("Error al conectar con backend:", error);
+      setBackendMessage(""); // If it fails, we leave it empty
+    }
+  };
+
+  fetchMessage(); // Execute the function when the component mounts
 }, []);
+
 
   // State to manage the visibility of the menu
   // const [hasCommunities, setHasCommunities] = useState(true); // Example state, can be modified based on actual data
   const [date, setDate] = useState(new Date()); // Stores the date selected by the calendar
   const hasEbooks = true; // False if there aren't any ebooks
   const hasAnnouncements = true; // False if there aren't any announcements
-  const [communities, setCommunities] = useState([]); // Here we will store the data from /subject
+  const [communities, setCommunities] = useState([]); // Here we will store the data from /communities
   const [loading, setLoading] = useState(true); // State to control loading
 
   useEffect(() => {
-    // Call to backend to get subjects
-    axios.get("http://localhost:3000/subject")
-      .then(response => {
-        setCommunities(response.data); //  Save the data fetched from the backend
-      })
-      .catch(error => {
-        console.error("Error al obtener las comunidades:", error);
-        setCommunities([]); // If an error occurs, leave it empty
-      })
-      .finally(() => setLoading(false)); // // Finished loading, whether error or success
-  }, []); // The empty array means this runs only once when the component mounts
+  getCommunities()
+    .then((data) => {
+      console.log("Communities desde backend:", data); // Here checks if data arrives
+      setCommunities(data);
+      setLoading(false); // Data has loaded
+    })
+    .catch((error) => {
+      console.error("Error al obtener communities en PanelPrincipal:", error);
+      setCommunities([]); // In case of error, we set an empty array
+      setLoading(false); // Even if there's an error, we stop loading
+    });
+  }, []);
 
   return (
     <>
@@ -203,8 +209,8 @@ const PanelPrincipal = () => {
                     </div>
                   ) : (
                     communities.map((community) => (
-                      <div key={community.id} className="comunidad-responsive text-start">
-                        {community.NomEntAsg} {/* Campo del backend */}
+                      <div key={community.CveEntAsg} className="comunidad-responsive text-start">
+                        {community.NomEntAsg} {/* Fields from backend */}
                       </div>
                     ))
                   )}
