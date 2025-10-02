@@ -2,13 +2,13 @@
  * File: Footer.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-04
- * Last modified: 2025-08-25
+ * Last modified: 2025-10-01
  * Description: Component that displays the footer section of the website.
  */
 
 function Footer() {
   return (
-    <footer className="bg-footer text-white pt-5 pb-3">
+    <footer className="bg-footer text-white pt-4 pb-0">
       <div className="container">
         <div className="row gy-4">
           {/* Column 1 */}

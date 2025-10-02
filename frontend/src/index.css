@@ -2,7 +2,7 @@
  * File: index.css
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-04
- * Last modified: 2025-09-18
+ * Last modified: 2025-10-01
  * Description: Styles for the main application layout, including responsive design and theming.
  */
 
@@ -13,7 +13,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  /* background-color: #fff; Before 242424 */
+  /* background-color: #fff; before 242424 */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -80,11 +80,11 @@ a:hover {
 
 /*Login styles*/
 .border-line {
-  border-color: #2c5234;
+  border-color: #526855;
 }
 
 .text-verde-uaemex {
-  color: #2c5234;
+  color: #526855;
 }
 
 .btn.btn-custom-green {
@@ -94,8 +94,8 @@ a:hover {
 }
 
 .btn.btn-custom-green:hover {
-  background-color: #5b7553;
-  border-color: #5b7553;
+  background-color: #526855;
+  border-color: #526855;
   color: white;
 }
 
@@ -110,13 +110,13 @@ a:hover {
 }
 
 .btn.btn-custom-oro:hover {
-  background-color: #7c6b14;
-  border-color: #7c6b14;
+  background-color: #CA9E52;
+  border-color: #CA9E52;
   color: white;
 }
 
 .text-dark-uaemex {
-  color: #253e43;
+  color: #526855;
 }
 
 .btn.btn-custom-dark {
@@ -126,18 +126,18 @@ a:hover {
 }
 
 .btn.btn-custom-dark:hover {
-  background-color: #345b61;
-  border-color: #345b61;
+  background-color: #526855;
+  border-color: #526855;
   color: white;
 }
 
 .input-borde-login {
-  border: 1px solid #96841a;
+  border: 1px solid #CA9E52;
   border-radius: 4px;
 }
 
 .input-borde-codigo {
-  border: 1px solid #253e43;
+  border: 1px solid #526855;
   border-radius: 4px;
 }
 
@@ -162,11 +162,11 @@ a:hover {
   text-decoration: none;
   color: black;              
   font-size: 0.9rem;         
-  padding: 0 0.75rem;        /* space between links */
+  padding: 0 0.75rem; /* space between links */
 }
 
 .nav-link:hover {
-  color: #2c5234;            
+  color: #526855;            
 }
 
 /* Title with line styles */
@@ -182,9 +182,9 @@ a:hover {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 180px; /* Line width */
-  height: 1px; /* Line thickness */
-  background-color: #96841a;
+  width: 180px; /* line width */
+  height: 1px;  /* line thickness */
+  background-color: #CA9E52;
   border-radius: 2px;
 }
 
@@ -202,17 +202,31 @@ a:hover {
   left: 0;
   width: 100%;
   height: 1px;
-  background-color: #96841a;
+  background-color: #CA9E52;
   border-radius: 2px;
 }
 
 /* File: frontend/src/components/common/Footer.jsx */
+/* .bg-footer {
+  background: linear-gradient(90deg, #526855, #CA9E52); /* bg green-gold 
+} */
+
 .bg-footer {
-  background: linear-gradient(90deg, #4c5b45, #7c7139); /* Bg green-gold */
+  background: 
+    linear-gradient(
+      to right, 
+      rgba(82,104,85,0.8) 0%,      /* verde empieza fuerte */
+      rgba(82,104,85,0.8) 70%,     /* verde domina hasta el 70% */
+      rgba(202,158,82,0.6) 100%    /* dorado aparece y termina en el 100% */
+    ),
+    url("/footer.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .bg-tape {
-  background: #bea52a; /* Bg gold tape */
+  background: #CA9E52; /* bg gold tape before bda52b */
 }
 
 /* File: frontend/src/pages/PanelPrincipal.jsx */
@@ -221,7 +235,7 @@ a:hover {
 /* Panel with the same width as the navigation menu */
 .panel-container {
   margin-left: 2.3rem;   /* equal to px-3 of the nav */
-  margin-right: 2.6rem;   /* equal to px-3 of the nav */
+  margin-right: 2.6rem;  /* equal to px-3 of the nav */
 }
 
 /* For medium-sized screens (tablets) */
@@ -244,26 +258,26 @@ a:hover {
 .calendar-card {
   display: flex;
   flex-direction: column;
-  min-height: 350px; /* Before 400px*/
+  min-height: 350px; /* before 400px*/
 }
 
 /* Responsive settings for the calendar */
 
-/* Ajustes para tablets grandes (768px a 991px) */
+/* Adjustments for large tablets (768px to 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
-  /* Bajamos un poco el calendario */
+  /* Lower the calendar a bit */
   .calendar-card {
-    min-height: auto; /* o un valor fijo como 350px si quieres */
+    min-height: auto; /* or a fixed value like 350px */
   }
 
-  /* Ajuste de botones del calendario */
+  /* Calendar button adjustments */
   .react-calendar__navigation button {
     min-width: 36px;
     min-height: 32px;
     font-size: 0.7rem;
   }
 
-  /* Iconos de la navbar derecha */
+  /* Icons on the right navigation bar */
   .nav-icons-right button {
     min-width: 36px;
     min-height: 36px;
@@ -282,13 +296,12 @@ a:hover {
   }
 }
 
-
 .calendar-card .card-body {
   /* overflow-y: auto;   scroll vertical only if necessary */
   /* overflow-x: hidden; avoid horizontal scroll */
-  overflow: visible; /* el calendario se ajusta a su contenido */
-  flex: 1;           /* ocupa todo el alto disponible del card */
-  padding: 0.5rem;        /* elimina espacio extra */
+  overflow: visible; /* the calendar is adjusted to its content */
+  flex: 1;           /* occupies all available height of the card */
+  padding: 0.5rem;   /* removes extra space */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -296,12 +309,12 @@ a:hover {
 
 /* Calendar styles */
 .react-calendar {
-  width: 95% !important; /* Before 100%*/
-  max-width: 350px !important; /* Before 100%*/
+  width: 95% !important; /* before 100%*/
+  max-width: 350px !important; /* before 100%*/
   border: none;
   font-family: inherit;
   box-sizing: border-box;
-  padding: 5px; /* Before 10px */
+  padding: 5px; /* before 10px */
   border-radius: 15px;               /* rounded edges */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* subtle shadow */
   background-color: #ffffff;         /* white background */
@@ -350,8 +363,8 @@ a:hover {
 
 /* Weekday headers */
 .react-calendar__month-view__weekdays {
-  display: grid;                        /* ✅ convierte en grid */
-  grid-template-columns: repeat(7, 1fr); /* ✅ 7 columnas iguales */
+  display: grid;                        /* converts to grid */
+  grid-template-columns: repeat(7, 1fr); /* 7 equal columns */
   text-align: center;
   font-weight: bold;
   font-size: 0.8rem;
@@ -362,7 +375,7 @@ a:hover {
 .react-calendar__navigation {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* distribuye flechas y central */
+  justify-content: space-between; /* distributes arrows and center */
   /* text-align: center; */
   font-weight: bold;
   font-size: 0.8rem !important;
@@ -372,7 +385,7 @@ a:hover {
   /* overflow: hidden; */
 }
 
-/* Botones de navegación */
+/* Navigation buttons */
 .react-calendar__navigation button {
   /* white-space: nowrap;  prevents names from breaking */
   /* flex: 1; distributes space between buttons */
@@ -384,12 +397,12 @@ a:hover {
   background: none;
   border: none;
   cursor: pointer;
-  display: flex;         /* importante para centrar contenido */
+  display: flex;         /* important for centering content */
   justify-content: center;
   align-items: center;
 }
 
-/* Botón central (mes/año) → ocupa el espacio sobrante */
+/* Centre button (month/year) → occupies the remaining space */
 .react-calendar__navigation button:nth-child(2) {
   flex: 1 1 auto;
   overflow: hidden;
@@ -398,7 +411,7 @@ a:hover {
 }
 
 /* ====== RESPONSIVE ====== */
-/* Pantallas medianas (hasta 1399px) */
+/* Medium screens (until 1399px) */
 
 @media (max-width: 1399px) {
   .react-calendar__navigation button {
@@ -433,9 +446,9 @@ a:hover {
   }
 }
 
-/* Legend / notas debajo del calendario */
+/* Legend / notes below calendar */
 .calendar-card .card-body p {
-  font-size: 0.7rem;  /* más pequeño */
+  font-size: 0.7rem;  /* smaller */
   margin-bottom: 0.25rem;
 }
 .calendar-card .card-body span.fw-bold {
@@ -443,20 +456,20 @@ a:hover {
 }
 
 .bg-custom-green {
-  background-color: #57956d !important; /* Before 2c5234 */
+  background-color: #526855 !important; /* before #2c5234 #57956d */
 }
 
 /* Smooth horizontal scrolling without a visible bar */
 .scroll-horizontal {
-  overflow-x: auto;             /* Enable horizontal scrolling if necessary */
-  overflow-y: hidden;           /* Avoid vertical scrolling */
-  -webkit-overflow-scrolling: touch; /* Soft scroll in iOS */
-  scroll-behavior: smooth;      /* Soft scroll in general */
-  scrollbar-width: none;        /* Hide toolbar in Firefox */
+  overflow-x: auto;             /* enable horizontal scrolling if necessary */
+  overflow-y: hidden;           /* avoid vertical scrolling */
+  -webkit-overflow-scrolling: touch; /* soft scroll in iOS */
+  scroll-behavior: smooth;      /* soft scroll in general */
+  scrollbar-width: none;        /* hide toolbar in Firefox */
 }
 
 .scroll-horizontal::-webkit-scrollbar {
-  display: none; /* Hide scrollbar in Chrome, Edge and Safari */
+  display: none; /* hide scrollbar in Chrome, Edge and Safari */
 }
 
 /* Base size for mobile phones and small screens */
@@ -482,30 +495,46 @@ a:hover {
   gap: 0.5rem;
 }
 
-/* Ajuste altura card de Comunidades Favoritas */
+/* Adjust height of favourite communities card */
 /* .comunidades-card {
   height: 500px; 
 } */
 
 .comunidades-body {
-  min-height: 461px;
+  min-height: 458px;
+}
+
+/* Hexagon image */
+.hexagon-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  clip-path: polygon(
+    25% 5%, 
+    75% 5%, 
+    100% 50%, 
+    75% 95%, 
+    25% 95%, 
+    0% 50%
+  );
+  transition: all 0.2s ease-in-out;
 }
 
 .ebooks-body {
-  max-height: 500px; /* scroll vertical en pantallas grandes */ 
-  overflow-y: auto;  /* enable vertical scrolling */
-  overflow-x: hidden;    /* 🔹 bloquea el scroll horizontal */
+  max-height: 500px;  /* scroll vertical en pantallas grandes */ 
+  overflow-y: auto;   /* enable vertical scrolling */
+  overflow-x: hidden; /* blocks horizontal scrolling */
   padding: 0.5rem;
-  box-sizing: border-box; /* 🔹 asegura que padding no genere overflow */
+  box-sizing: border-box; /* ensure that padding does not cause overflow */
 }
 
-/* ======= Ajustes para móviles y tablets pequeños (hasta 767px) ======= */
+/* ======= Settings for mobile phones and small tablets (until 767px) ======= */
 @media (max-width: 767px) {
-  /* Calendario baja */
+  /* Calendar down */
   .calendar-card {
     /* min-height: auto; */
-    width: 100% !important;  /* que ocupe todo el card */
-    max-width: 100% !important; /* sobreescribe 350px */
+    width: 100% !important;  /* all the card */
+    max-width: 100% !important; 
   }
 
   /* Botones de navegación del calendario */
@@ -515,22 +544,22 @@ a:hover {
     font-size: 0.6rem;
   }
 
-  /* Etiqueta de mes y año */
+  /* Month and year label */
   .react-calendar__navigation__label {
-    font-size: 0.7rem; /* más pequeño para que quepa */
+    font-size: 0.7rem; 
   }
 
-  /* Días de la semana */
+  /* Weekday */
   .react-calendar__month-view__weekdays__weekday, 
   .react-calendar__month-view__weekdays__weekday abbr {  
     font-size: 0.65rem;
   }
 
   .react-calendar__month-view__weekdays {
-    margin-bottom: 0.25rem; /* reduce espacio de filas */
+    margin-bottom: 0.25rem; /* reduce row spacing */
   }
 
-  /* Iconos de la navbar derecha */
+  /* Icons on the right navigation bar */
   .nav-icons-right button {
     min-width: 32px;
     min-height: 32px;
@@ -552,31 +581,43 @@ a:hover {
 }
 
 .announcements-body {
-  min-height: 195px; /* adjust as you prefer */
+  min-height: 200px; /* adjust as you prefer */
   /* overflow-y: auto;  enable vertical scrolling */
 }
 
 /* Communities in a single row (100% width) */
 .comunidad-responsive {
-  width: 100%;       /* Always takes up the entire width */
-  max-width: 400px;  /* Optional, so it doesn´t look huge on large screens */
+  width: 100%;       /* always takes up the entire width */
+  /* max-width: 400px;  optional, so it doesn´t look huge on large screens */
   padding: 10px 15px;
-  margin-bottom: 10px; /* Space between rows */
+  margin-bottom: 10px; /* space between rows */
   border-radius: 8px;
   background-color: #f8f9fa;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.comunidad-responsive:hover {
+  background-color: #e9f5ec;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
 .comunidad-responsive:last-child {
-  margin-bottom: 0; /* Removes space from the last one */
+  margin-bottom: 0; /* removes space from the last one */
+}
+
+.comunidad-responsive:hover .hexagon-img {
+  transform: scale(1.1);
 }
 
 /* Icon container on the right of navbar */
 .nav-icons-right button {
-  flex: 0 0 auto; /* prevents icons from shrinking */
+  flex: 0 0 auto;   /* prevents icons from shrinking */
   padding: 0.25rem; /* a small padding so that they do not become deformed */
-  min-width: 36px; /* minimum width of each icon */
+  min-width: 36px;  /* minimum width of each icon */
   min-height: 36px; /* minimum height of each icon */
   display: flex;
   justify-content: center;
@@ -589,7 +630,6 @@ a:hover {
     min-height: 28px;
   }
 }
-
 
 @media (max-width: 576px) {
   .nav-icons-right svg {
@@ -616,7 +656,7 @@ a:hover {
 
 /* Gold line */
 .gold-line {
-  height: 4px;              /* line thickness */
-  background-color: #96841a;   /* golden colour */
+  height: 3px;              /* line thickness */
+  background-color: #CA9E52;   /* golden colour before 96841a*/
   width: 100%;              /* occupies the entire width */
 }

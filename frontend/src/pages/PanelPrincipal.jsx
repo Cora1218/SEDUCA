@@ -2,7 +2,7 @@
  * File: frontend/src/pages/PanelPrincipal.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-08-05
- * Last modified: 2025-09-25
+ * Last modified: 2025-09-30
  * Description: Main component for the main panel page.
  */
 
@@ -15,6 +15,7 @@ import { getBackendMessage } from "../services/backendService";
 import { getCommunities } from "../services/communityService";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css"; // Calendar styles
+import photo from "../assets/img/sinfoto.png"; // Image from teacher
 
 const PanelPrincipal = () => {
   const [backendMessage, setBackendMessage] = useState("");
@@ -185,9 +186,9 @@ const PanelPrincipal = () => {
         {/* <section className="my-4"> */}
           {/* <div className="row g-4"> */}
 
-            {/* Community card */}
             <div className="col-12 col-md-9">
-              <div className="card shadow-sm border-success mb-3">
+               {/* Community card */}
+               <div className="card border-0 border-success"> {/* shadow-sm */}
                 <div
                   className="card-header bg-custom-green text-white header-xs"
                   style={{
@@ -196,7 +197,7 @@ const PanelPrincipal = () => {
                 >
                   COMUNIDADES FAVORITAS
                 </div>
-                <div className="card-body comunidades-body border border-0 border-top-0 d-flex flex-column align-items-start overflow-auto w-100">
+                <div className="card-body comunidades-body border-0 d-flex flex-column align-items-start overflow-auto w-100">
                   {loading ? (
                     <p className="text-dark fs-6 fs-md-5">
                       Cargando comunidades...
@@ -209,8 +210,26 @@ const PanelPrincipal = () => {
                     </div>
                   ) : (
                     communities.map((community) => (
-                      <div key={community.CveEntAsg} className="comunidad-responsive text-start">
-                        {community.NomEntAsg} {/* Fields from backend */}
+                      <div key={community.CveEntAsg} className="comunidad-responsive border-bottom pb-2 mb-1 d-flex align-items-center">
+                        {/* Image at the beginning */}
+                        <div className="me-3">
+                          <img
+                            // src={community.imgUrl} // Image URL
+                            src={photo} // Placeholder image
+                            alt={`${community.nomCompleto} photo`}
+                            // className="img-fluid rounded-circle"
+                            className="hexagon-img"
+                            style={{ width: "55px", height: "55px", objectFit: "cover" }}
+                          />
+                        </div>
+
+                        {/* Fields from backend */}
+                        <div className="flex-grow-1 text-start">
+                          <div className="fw-bold">{community.NomEntAsg}</div> 
+                          <div className="small"><span className="fw-bold">Asesor:</span> {community.nomCompleto}</div>
+                          <div className="small"><span className="fw-bold">ID:</span> {community.CveEntCom}</div>
+                          <div className="small"><span className="fw-bold">Perfil:</span> {community.nPerfil}</div>
+                        </div>
                       </div>
                     ))
                   )}
@@ -219,16 +238,16 @@ const PanelPrincipal = () => {
 
               {/* MIS EBOOKS */}
               {hasEbooks && (
-                <div className="card shadow-sm border-0 ">
+                <div className="card border-0 border-success mt-3"> {/* shadow-sm */}
                   <div
-                    className="card-header bg-custom-green text-white header-xs"
+                    className="card-header bg-custom-green text-white header-xs mb-2"
                     style={{
                       textShadow: "1px 1px 2px rgba(0, 0, 0, 0.4)",
                     }}
                   >
                     MIS EBOOKS
                   </div>
-                  <div className="card-body ebooks-body border border-success border-top-0">
+                  <div className="card-body ebooks-body">
                       <div className="row">
                         {/* Ebook 1 */}
                         <div className="col-md-4 mb-4">
@@ -304,14 +323,14 @@ const PanelPrincipal = () => {
             {/* Right sidebar with calendar and announcements */}
             <div className="col-12 col-md-3">
               {/* Calendar Card */}
-              <div className="card shadow-sm border-0 calendar-card">
+              <div className="card border-0 border-success calendar-card"> {/* shadow-sm */}
                 <div
                   className="card-header bg-custom-green text-white header-xs"
                   style={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.4)" }}
                 >
                   CALENDARIO
                 </div>
-                <div className="card-body border border-success border-top-0">
+                <div className="card-body">
                   <Calendar
                     onChange={setDate}
                     value={date}
@@ -359,24 +378,24 @@ const PanelPrincipal = () => {
 
               {/* Announcement card */}
               {hasAnnouncements && (
-                <div className="card shadow-sm border-0 mt-3">
+                <div className="card border-0 border-success mt-3"> {/* shadow-sm */}
                   <div
                     className="card-header bg-custom-green text-white header-xs"
                     style={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.4)" }}
                   >
                     AVISOS
                   </div>
-                  <div className="card-body announcements-body border border-success border-top-0">
+                  <div className="card-body announcements-body">
                       <div className="list-group">
                         <a
                           href="#aviso1"
-                          className="list-group-item list-group-item-action"
+                          className="list-group-item list-group-item-action border-0"
                         >
                           <strong>Mantenimiento programado:</strong> El sistema estará inactivo el 10 de septiembre.
                         </a>
                         <a
                           href="#aviso2"
-                          className="list-group-item list-group-item-action"
+                          className="list-group-item list-group-item-action border-0"
                         >
                           <strong>Nuevo recurso:</strong> Ya puedes acceder al curso de Introducción a la Programación.
                         </a>
