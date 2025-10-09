@@ -1,0 +1,31 @@
+/* 
+ * File: frontend/src/components/AccesosRapidos.css
+ * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
+ * Created on: 2025-10-09
+ * Last modified: 2025-10-09
+ * Description: Styles for the Accesos Rapidos component, including responsive layout and card styling.
+ */
+
+ /* Title with line styles */
+.title-with-line {
+  position: relative;
+  display: inline-block; /* line the width of the text */
+  padding-bottom: 0.1rem; /* space for the line */
+}
+
+.title-with-line::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px; /* line width */
+  height: 1px;  /* line thickness */
+  background-color: #CA9E52;
+  border-radius: 2px;
+}
+
+/* Custom list styles */
+.custom-list li {
+  margin-bottom: 0.5rem; /* space between items */
+}

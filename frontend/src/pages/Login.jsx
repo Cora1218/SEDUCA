@@ -1,10 +1,11 @@
 /**
- * File: Login.jsx
+ * File: frontend/src/pages/Login.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-04
- * Last modified: 2025-07-17
+ * Last modified: 2025-10-09
  * Description: Component that displays a responsive login form for user authentication.
  */
+import "./Login.css";
 
 function Login() {
   return (
@@ -15,7 +16,7 @@ function Login() {
       <section className="pt-2 pb-0 bg-light">
         <div className="container d-flex flex-column align-items-center">
           <div className="row justify-content-center gap-4">
-            {/* Card 1: Correo UAEMéx */}
+            {/* Card 1: UAEMéx mail */}
             <div className="col-md-3 bg-white border rounded shadow-sm p-4"> 
               <h6 className="text-verde-uaemex fw-bold text-center mb-3">
                 INICIO CON CORREO UAEMéx <img src="https://res-h3.public.cdn.office.net/owamail/20230721005.10/resources/images/favicons/mail-seen.ico" alt="Outlook" width="15" height="15" className="me-1 align-baseline"/>
@@ -35,7 +36,7 @@ function Login() {
               </div>
             </div>
 
-            {/* Card 2: Usuario SEDUCA */}
+            {/* Card 2: SEDUCA user */}
             <div className="col-md-3 bg-white border rounded shadow-sm p-4">
               <h6 className="text-oro-uaemex fw-bold text-center mb-3">
                 INICIO CON USUARIO SEDUCA
@@ -61,9 +62,9 @@ function Login() {
                 </button>
               </div>
             </div>
-            {/* Card 3: Código */}
+            {/* Card 3: Code */}
             <div className="col-md-3 bg-white border rounded shadow-sm p-4">
-              <h6 className="text-dark-uaemex fw-bold text-center mb-2">INICIO CON CÓDIGO</h6>
+              <h6 className="text-gray-uaemex fw-bold text-center mb-2">INICIO CON CÓDIGO</h6>
               <p className="small text-center mb-3">
                 Con el código de acceso proporcionado por el profesor se une a determinada comunidad, con el perfil de estudiante.
               </p>

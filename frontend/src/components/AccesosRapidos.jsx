@@ -2,9 +2,10 @@
  * File: AccesosRapidos.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-11
- * Last modified: 2025-07-17
+ * Last modified: 2025-10-09
  * Description: Component that displays quick access cards to different services and resources.
  */
+import './AccesosRapidos.css';
 
 function AccesosRapidos() {
   return (
@@ -15,7 +16,7 @@ function AccesosRapidos() {
       <div className="container">
         <div className="row g-4 justify-content-center">
           
-          {/* Servicios Escolares */}
+          {/* School Services */}
           <div className="col-12 col-md-4">
             <div className="card border-0 shadow-sm">
               <div className="card-body d-flex flex-column align-items-center" style={{ minHeight: "261px" }}>
@@ -31,7 +32,7 @@ function AccesosRapidos() {
             </div>
           </div>
 
-          {/* Calendario Escolar */}
+          {/* School Calendar */}
           <div className="col-12 col-md-4">
             <div className="card border-0 shadow-sm">
               <div className="card-body d-flex flex-column">
@@ -48,7 +49,7 @@ function AccesosRapidos() {
             </div>
           </div>
 
-          {/* Campus Virtual */}
+          {/* Virtual Campus */}
           <div className="col-12 col-md-4">
             <div className="card border-0 shadow-sm">
               <div className="card-body d-flex flex-column">

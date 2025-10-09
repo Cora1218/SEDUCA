@@ -1,8 +1,8 @@
 /**
- * File: Compatibilidad.jsx
+ * File: frontend/src/components/Compatibilidad.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-15
- * Last modified: 2025-07-17
+ * Last modified: 2025-10-09
  * Description: Component that displays compatibility information for the portal.
  */
 
@@ -11,7 +11,8 @@ function Compatibilidad() {
     <section className="py-0 bg-light">
       <div className="container">
         <div className="row">
-          {/* Columna izquierda: Título, texto, imágenes */}
+          
+          {/* Left column: Title, text, images */}
           <div className="col-12 col-md-8">
             <h6 className="mb-3 text-verde-uaemex title-with-full-line">COMPATIBILIDAD</h6>
             <p className="text-muted small">

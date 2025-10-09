@@ -1,19 +1,18 @@
-import './Header.css';
-
 /**
- * File: Header.jsx
+ * File: frontend/src/components/common/Header.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-04
- * Last modified: 2025-07-17
+ * Last modified: 2025-10-09
  * Description: Component that displays the header section of the website.
  */
+import './Header.css';
 
 function Header() {
   return (
     <header>
       {/* Pleca with green background image and icons on top of it */}
       <div
-        className="pleca2021 py-2 border-bottom"
+        className="py-2 border-bottom"
         style={{
           backgroundImage: "url(/pleca-arriba_2021-2025.jpg)",
           backgroundSize: "cover",
@@ -25,7 +24,7 @@ function Header() {
           className="container d-flex flex-wrap gap-3 justify-content-start pleca-container"
         >
           <a
-            className="icon-asome text-white text-decoration-none d-flex align-items-center"
+            className="text-white text-decoration-none d-flex align-items-center"
             href="https://www.facebook.com/DECyD.UAEM/"
             target="_blank"
             rel="noreferrer"
@@ -33,7 +32,7 @@ function Header() {
             <i className="bi bi-facebook fs-5"></i>
           </a>
           <a
-            className="icon-asome text-white text-decoration-none d-flex align-items-center"
+            className="text-white text-decoration-none d-flex align-items-center"
             href="https://twitter.com/@DECyD_UAEM"
             target="_blank"
             rel="noreferrer"
@@ -41,14 +40,14 @@ function Header() {
             <i className="bi bi-twitter fs-5"></i>
           </a>
           <a
-            className="icon-asome text-white text-decoration-none d-flex align-items-center"
+            className="text-white text-decoration-none d-flex align-items-center"
             href="mailto:seduca@uaemex.mx"
           >
             <i className="bi bi-envelope-fill fs-5"></i>&nbsp;
             <span className="text-normal">seduca@uaemex.mx</span>
           </a>
           <a
-            className="icon-asome text-white text-decoration-none d-flex align-items-center"
+            className="text-white text-decoration-none d-flex align-items-center"
             href="https://atencion.uaemex.mx/"
             target="_blank"
             rel="noreferrer"

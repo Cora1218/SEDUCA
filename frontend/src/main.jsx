@@ -1,3 +1,11 @@
+/* 
+ * File: frontend/src/main.jsx
+ * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
+ * Created on: 2025-07-04
+ * Last modified: 2025-10-09
+ * Description: Main entry point for the application
+ */
+
 // Import functions of React and React DOM
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
@@ -8,18 +16,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 // JS of Bootstrap
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-// import custom css
+// import global custom css
 import './index.css'
 //  Main app component
 import App from './App.jsx' 
-
-/* 
- * File: main.jsx
- * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
- * Created on: 2025-07-04
- * Last modified: 2025-07-17
- * Description: Main entry point for the application
- */
 
 // Connect React to the <div id="root"> of index.html and render the app
 // Here the “injection” takes place

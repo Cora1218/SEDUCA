@@ -1,8 +1,8 @@
 /* 
- * File: Carousel.css
+ * File: frontend/src/components/Carousel.css
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-11
- * Last modified: 2025-07-17
+ * Last modified: 2025-10-09
  * Description: Styles for the Carousel component, including responsive layout and image sizing.
  */
 
@@ -63,7 +63,7 @@
 .carousel-indicators { 
   position: absolute;
   bottom: -45px !important;
-  /* background-color: rgba(44, 82, 52, 0.8); 0.8 es el nivel de opacidad */
+  /* background-color: rgba(44, 82, 52, 0.8); */
   left: 0;
   right: 0;
   display: flex;

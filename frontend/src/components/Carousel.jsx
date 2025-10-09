@@ -1,12 +1,11 @@
-import './Carousel.css';
-
 /**
- * File: Carousel.jsx
+ * File: frontend/src/components/Carousel.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-11
- * Last modified: 2025-07-11
+ * Last modified: 2025-10-09
  * Description: Component that displays a responsive Bootstrap carousel for featured content.
  */
+import './Carousel.css';
 
 function Carousel() {
   return (

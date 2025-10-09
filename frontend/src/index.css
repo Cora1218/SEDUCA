@@ -2,7 +2,7 @@
  * File: index.css
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-04
- * Last modified: 2025-10-01
+ * Last modified: 2025-10-07
  * Description: Styles for the main application layout, including responsive design and theming.
  */
 
@@ -78,7 +78,6 @@ a:hover {
   color: #000;
 }
 
-/*Login styles*/
 .border-line {
   border-color: #526855;
 }
@@ -87,68 +86,17 @@ a:hover {
   color: #526855;
 }
 
-.btn.btn-custom-green {
-  background-color: #2c5234;
-  border-color: #2c5234;
-  color: white;
-}
-
-.btn.btn-custom-green:hover {
-  background-color: #526855;
-  border-color: #526855;
-  color: white;
-}
-
 .text-oro-uaemex {
-  color: #96841a;
+  color: #CA9E52; /*before 96841a*/
 }
 
-.btn.btn-custom-oro {
-  background-color: #96841a;
-  border-color: #96841a;
-  color: white;
-}
-
-.btn.btn-custom-oro:hover {
-  background-color: #CA9E52;
-  border-color: #CA9E52;
-  color: white;
-}
-
-.text-dark-uaemex {
-  color: #526855;
-}
-
-.btn.btn-custom-dark {
-  background-color: #253e43;
-  border-color: #253e43;
-  color: white;
-}
-
-.btn.btn-custom-dark:hover {
-  background-color: #526855;
-  border-color: #526855;
-  color: white;
-}
-
-.input-borde-login {
-  border: 1px solid #CA9E52;
-  border-radius: 4px;
-}
-
-.input-borde-codigo {
-  border: 1px solid #526855;
-  border-radius: 4px;
-}
-
-/* Custom list styles */
-.custom-list li {
-  margin-bottom: 0.5rem; /* space between items */
+.text-gray-uaemex {
+  color: #464f47;
 }
 
 .custom-link {
   text-decoration: none;
-  color: #2c5234;
+  color: #526855;
 }
 
 .custom-link::before {
@@ -156,36 +104,6 @@ a:hover {
   color: #96841a;
   font-weight: bold;
   margin-right: 0.2rem;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: black;              
-  font-size: 0.9rem;         
-  padding: 0 0.75rem; /* space between links */
-}
-
-.nav-link:hover {
-  color: #526855;            
-}
-
-/* Title with line styles */
-.title-with-line {
-  position: relative;
-  display: inline-block; /* line the width of the text */
-  padding-bottom: 0.1rem; /* space for the line */
-}
-
-.title-with-line::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px; /* line width */
-  height: 1px;  /* line thickness */
-  background-color: #CA9E52;
-  border-radius: 2px;
 }
 
 /* Title with full line styles */
@@ -206,27 +124,15 @@ a:hover {
   border-radius: 2px;
 }
 
-/* File: frontend/src/components/common/Footer.jsx */
-/* .bg-footer {
-  background: linear-gradient(90deg, #526855, #CA9E52); /* bg green-gold 
-} */
-
-.bg-footer {
-  background: 
-    linear-gradient(
-      to right, 
-      rgba(82,104,85,0.8) 0%,      /* verde empieza fuerte */
-      rgba(82,104,85,0.8) 70%,     /* verde domina hasta el 70% */
-      rgba(202,158,82,0.6) 100%    /* dorado aparece y termina en el 100% */
-    ),
-    url("/footer.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.nav-link {
+  text-decoration: none;
+  color: black;              
+  font-size: 0.9rem;         
+  padding: 0 0.75rem; /* space between links */
 }
 
-.bg-tape {
-  background: #CA9E52; /* bg gold tape before bda52b */
+.nav-link:hover {
+  color: #526855;            
 }
 
 /* File: frontend/src/pages/PanelPrincipal.jsx */
@@ -235,7 +141,7 @@ a:hover {
 /* Panel with the same width as the navigation menu */
 .panel-container {
   margin-left: 2.3rem;   /* equal to px-3 of the nav */
-  margin-right: 2.6rem;  /* equal to px-3 of the nav */
+  margin-right: 2.4rem;  /* equal to px-3 of the nav */
 }
 
 /* For medium-sized screens (tablets) */

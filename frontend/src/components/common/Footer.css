@@ -1,0 +1,11 @@
+/* 
+ * File: frontend/src/components/common/Footer.css
+ * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
+ * Created on: 2025-10-09
+ * Last modified: 2025-10-09
+ * Description: Styles for the Footer component, including responsive layout and logo sizing.
+ */
+
+.bg-tape {
+  background: #CA9E52; /* bg gold tape before bda52b */
+}

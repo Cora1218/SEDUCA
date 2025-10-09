@@ -2,7 +2,7 @@
  * File: frontend/src/pages/PanelPrincipal.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-08-05
- * Last modified: 2025-09-30
+ * Last modified: 2025-10-07
  * Description: Main component for the main panel page.
  */
 
@@ -197,7 +197,7 @@ const PanelPrincipal = () => {
                 >
                   COMUNIDADES FAVORITAS
                 </div>
-                <div className="card-body comunidades-body border-0 d-flex flex-column align-items-start overflow-auto w-100">
+                <div className="comunidades-body border-0 d-flex flex-column align-items-start overflow-auto w-100"> {/* card-body put for scrolling */}
                   {loading ? (
                     <p className="text-dark fs-6 fs-md-5">
                       Cargando comunidades...
@@ -250,19 +250,24 @@ const PanelPrincipal = () => {
                   <div className="card-body ebooks-body">
                       <div className="row">
                         {/* Ebook 1 */}
-                        <div className="col-md-4 mb-4">
-                          <div className="card shadow-sm h-100">
+                        {/* <div className="col-md-4 mb-4"> */}
+                        <div className="col-12 col-sm-6 col-md-3 mb-4">
+                          <div className="card shadow-sm h-100 border-0">
                             <img
-                              src="https://via.placeholder.com/300x180"
-                              className="card-img-top"
+                              src="/miniatura_eRecursosAmbSocioII.png" 
+                              className="card-img-top img-fluid"
                               alt="Ebook 1"
+                              style={{ width: "160px", height: "208px", objectFit: "cover", margin: "0 auto" }}
                             />
-                            <div className="card-body d-flex flex-column">
+                            <div className="card-body d-flex flex-column text-center">
                               <h5 className="card-title">
-                                <a href="#ebook1" className="stretched-link text-decoration-none text-dark">Expresión Oral y Escrita</a>
+                                <a href="#ebook1" className="stretched-link text-decoration-none text-dark fw-bold small">E-book Recursos y Ámbitos Socioemocionales II</a>
                               </h5>
+                              <p className="card-text mb-0">
+                                Grupo 1
+                              </p>
                               <p className="card-text">
-                                Recurso interactivo para mejorar tus habilidades de comunicación.
+                                SD - Dirección de Nivel Medio Superior
                               </p>
                               {/* <button className="btn btn-primary mt-auto">
                                 Ver Ebook
@@ -272,19 +277,24 @@ const PanelPrincipal = () => {
                         </div>
 
                         {/* Ebook 2 */}
-                        <div className="col-md-4 mb-4">
-                          <div className="card shadow-sm h-100">
+                        {/* <div className="col-md-4 mb-4"> */}
+                        <div className="col-12 col-sm-6 col-md-3 mb-4">
+                          <div className="card shadow-sm h-100 border-0">
                             <img
-                              src="https://via.placeholder.com/300x180"
-                              className="card-img-top"
+                              src="/miniatura_eRecursosAmbSocioII.png"
+                              className="card-img-top img-fluid"
                               alt="Ebook 2"
+                              style={{ width: "160px", height: "208px", objectFit: "cover", margin: "0 auto" }}
                             />
-                            <div className="card-body d-flex flex-column">
+                            <div className="card-body d-flex flex-column text-center">
                               <h5 className="card-title">
-                                <a href="#ebook2" className="stretched-link text-decoration-none text-dark">Aritmética y Lenguaje Matemático</a>
+                                <a href="#ebook2" className="stretched-link text-decoration-none text-dark fw-bold small">E-book Recursos y Ámbitos Socioemocionales II</a>
                               </h5>
+                              <p className="card-text mb-0">
+                                Grupo 2
+                              </p>
                               <p className="card-text">
-                                Guía visual para reforzar conceptos de matemáticas básicas.
+                                SD - Dirección de Nivel Medio Superior
                               </p>
                               {/* <button className="btn btn-primary mt-auto">
                                 Ver Ebook
@@ -294,19 +304,23 @@ const PanelPrincipal = () => {
                         </div>
 
                         {/* Ebook 3 */}
-                        <div className="col-md-4 mb-4">
-                          <div className="card shadow-sm h-100">
+                        <div className="col-12 col-sm-6 col-md-3 mb-4">
+                          <div className="card shadow-sm h-100 border-0">
                             <img
-                              src="https://via.placeholder.com/300x180"
-                              className="card-img-top"
+                              src="/miniatura_eRecursosAmbSocioII.png"
+                              className="card-img-top img-fluid"
                               alt="Ebook 3"
+                              style={{ width: "160px", height: "208px", objectFit: "cover", margin: "0 auto" }}
                             />
-                            <div className="card-body d-flex flex-column">
+                            <div className="card-body d-flex flex-column text-center">
                               <h5 className="card-title">
-                                <a href="#ebook3" className="stretched-link text-decoration-none text-dark">Pensamiento Crítico</a>
+                                <a href="#ebook3" className="stretched-link text-decoration-none text-dark fw-bold small">E-book Recursos y Ámbitos Socioemocionales II</a>
                               </h5>
+                              <p className="card-text mb-0">
+                                Grupo 3
+                              </p>
                               <p className="card-text">
-                                Actividades y lecturas para fortalecer la capacidad de análisis.
+                                SD - Dirección de Nivel Medio Superior
                               </p>
                               {/* <button className="btn btn-primary mt-auto">
                                 Ver Ebook
@@ -314,6 +328,33 @@ const PanelPrincipal = () => {
                             </div>
                           </div>
                         </div>
+
+                        {/* Ebook 4 */}
+                        <div className="col-12 col-sm-6 col-md-3 mb-4">
+                          <div className="card shadow-sm h-100 border-0">
+                            <img
+                              src="/miniatura_eRecursosAmbSocioII.png"
+                              className="card-img-top img-fluid"
+                              alt="Ebook 4"
+                              style={{ width: "160px", height: "208px", objectFit: "cover", margin: "0 auto" }}
+                            />
+                            <div className="card-body d-flex flex-column text-center">
+                              <h5 className="card-title">
+                                <a href="#ebook4" className="stretched-link text-decoration-none text-dark fw-bold small">E-book Recursos y Ámbitos Socioemocionales II</a>
+                              </h5>
+                              <p className="card-text mb-0">
+                                Grupo 4
+                              </p>
+                              <p className="card-text">
+                                SD - Dirección de Nivel Medio Superior
+                              </p>
+                              {/* <button className="btn btn-primary mt-auto">
+                                Ver Ebook
+                              </button> */}
+                            </div>
+                          </div>
+                        </div>
+
                       </div>
                   </div>
                 </div>
@@ -409,7 +450,7 @@ const PanelPrincipal = () => {
       </PanelLayout>
 
       {/* Gold line before the footer */}
-      <div className="gold-line"></div>
+      {/* <div className="gold-line"></div> */}
 
       <Footer />
     </>

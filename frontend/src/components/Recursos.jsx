@@ -1,3 +1,11 @@
+/**
+ * File: frontend/src/components/Recursos.jsx
+ * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
+ * Created on: 2025-07-14
+ * Last modified: 2025-10-09
+ * Description: Component that displays various digital resources.
+ */
+
 import realyc_org from '../assets/img/recursos/realyc_org.png';
 import hemeroteca_digital from '../assets/img/recursos/hemeroteca_digital.png';
 import bibliotega_digital from '../assets/img/recursos/bibliotega_digital.png';
@@ -7,21 +15,13 @@ import publicaciones_line from '../assets/img/recursos/publicaciones_line.png';
 import autores from '../assets/img/recursos/autores.png';
 import portal_editor from '../assets/img/recursos/portal_editor.png';
 
-/**
- * File: Recursos.jsx
- * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
- * Created on: 2025-07-14
- * Last modified: 2025-07-17
- * Description: Component that displays various digital resources.
- */
-
 function Recursos() {
   return (
     <section className="py-3 bg-light">
       <div className="container">
         <div className="row justify-content-center g-4">
 
-          {/* Recursos en Línea */}
+          {/* Online Resources */}
           <div className="col-12 col-md-8">
             <h6 className="mb-3 text-verde-uaemex title-with-full-line">RECURSOS EN LINEA</h6>
             
@@ -79,7 +79,7 @@ function Recursos() {
             </div>
           </div>
 
-          {/* Redes Sociales */}
+          {/* Social Media */}
           <div className="col-12 col-md-4">
             <h6 className="mb-3 text-verde-uaemex title-with-full-line">REDES SOCIALES</h6>
             <div className="d-flex justify-content-center">
