@@ -1,8 +1,8 @@
 /**
- * File: database.js
+ * File: backend/src/config/database.js
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-08-12
- * Last modified: 2025-09-11
+ * Last modified: 2025-10-10
  * Description: Connection pool to MySQL database using mysql2 and environment variables.
  * It reads the database configuration from environment variables defined in the .env file.
  */

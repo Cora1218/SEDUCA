@@ -2,7 +2,7 @@
  * File: frontend/src/router/index.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-04
- * Last modified: 2025-08-05
+ * Last modified: 2025-10-10
  * Description: Main router component for the application, handling all route definitions.
  */
 
@@ -15,7 +15,7 @@ function AppRouter() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Inicio />} />
-        <Route path="/panel-principal" element={<PanelPrincipal />} />
+        <Route path="/panel" element={<PanelPrincipal />} />
         {/* Add more routes as needed */}
       </Routes>
     </BrowserRouter>
