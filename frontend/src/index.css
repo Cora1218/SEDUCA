@@ -2,7 +2,7 @@
  * File: frontend/src/index.css
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-04
- * Last modified: 2025-10-10
+ * Last modified: 2025-10-15
  * Description: Styles for the main application layout, including responsive design and theming.
  */
 
@@ -83,7 +83,7 @@ a:hover {
 }
 
 .text-verde-uaemex {
-  color: #526855;
+  color: #526855 !important;
 }
 
 .text-oro-uaemex {
@@ -168,18 +168,6 @@ a:hover {
   }
 }
 
-/* Navigation links */
-.nav-link {
-  text-decoration: none;
-  color: black;              
-  font-size: 0.9rem;         
-  padding: 0 0.75rem; /* space between links */
-}
-
-.nav-link:hover {
-  color: #526855;            
-}
-
 /* PanelLayout with the same width as the navigation menu */
 .panel-container {
   margin-left: 2.3rem;   /* equal to px-3 of the nav */
@@ -209,7 +197,7 @@ a:hover {
 } */
 
 .comunidades-body {
-  min-height: 458px;
+  min-height: 474px;
 }
 
 /* Hexagon image */

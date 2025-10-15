@@ -1,0 +1,182 @@
+/**
+ * File: frontend/src/components/panel/Navbar.css
+ * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
+ * Created on: 2025-10-13
+ * Last modified: 2025-10-14
+ * Description: Styles for the main navigation component, including layout and responsive design.
+ */
+
+/* ---------- Variables ---------- */
+:root {
+  --icon-gold: #9c8414;
+}
+
+/* ---------- Navigation links ---------- */
+.nav-link {
+  text-decoration: none;
+  /* color: black;               */
+  font-size: 0.9rem;         
+  padding: 0 0.75rem; /* space between links */
+}
+
+.nav-link:hover {
+  color: #526855;    
+  font-weight: 700;
+}
+
+.nav-link span.d-block {
+  line-height: 1.1; /* Reducing line height */
+}
+
+/* ---------- Navbar icons (general) ---------- */
+.navbar-icons .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+  padding: 6px;
+  border-radius: 6px;
+  transition: transform .12s ease, box-shadow .12s ease;
+  background: transparent;
+  border: none;
+}
+
+/* Hover/active states */
+.navbar-icons .btn:hover {
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+/* Vertical adjustment of SVGs inside buttons */
+.icon-hex svg, .navbar-icons .btn svg {
+  display: block;
+  pointer-events: none;
+  vertical-align: middle;
+  /* fill: var(--icon-gold) */
+}
+
+/* ---------- Bell button ---------- */
+.navbar-icons .bell-btn {
+  min-width: 44px;   /* button box bigger for bell icon */
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0; /* vertical alignment -1 1 */
+}
+
+/* SVG (icon) inside the bell button */
+.bell-icon {
+  width: 25px !important;
+  height: 25px !important;
+  display: block;
+  pointer-events: none;
+  color: var(--icon-gold);
+}
+
+/* ---------- Hexagonal icons ---------- */
+.icon-hex {
+  background: #fffbea; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 10px; /* space between border and svg */
+  clip-path: polygon(
+    25% 6.7%,
+    75% 6.7%,
+    100% 50%,
+    75% 93.3%,
+    25% 93.3%,
+    0% 50%
+  );
+  box-sizing: border-box; /* aseguramos que el borde no se recorte */
+  transition: all 0.2s ease-in-out;
+  border: 1px solid var(--icon-gold);
+}
+
+/* Hover/focus states for hexagon */
+.icon-hex:hover, .icon-hex:focus {
+  background: #ebdea3;  
+  box-shadow: 0 4px 10px rgba(156, 132, 20, 0.25);
+  /* border: 2px solid var(--icon-gold); */
+}
+
+.help-icon,
+.user-icon {
+  width: 28px !important;
+  height: 28px !important;
+  display: block;
+  pointer-events: none;
+  color: var(--icon-gold);
+}
+
+/* .navbar-icons .btn svg {
+  fill: currentColor;
+} */
+
+/* ---------- Menu button (hamburger) ---------- */
+.menu-btn {
+  border: none;
+  background: none;
+  box-shadow: none;
+  padding: 6px;
+}
+
+.menu-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+}
+
+/* ---------- Layout adjustments ---------- */
+.navbar-container {
+  padding-left: 0rem;
+  padding-right: 0.5rem;
+}
+
+/* ---------- Media queries ---------- */
+
+/* large screens (hide menu button) */
+@media (min-width: 992px) {
+  .menu-btn {
+    display: none;
+  }
+}
+
+/* Medium and small screens (adjust icons spacing) */
+@media (max-width: 991.98px) {
+  .navbar-icons {
+    gap: 0.75rem;
+  }
+}
+
+/* Extra small screens (phone) */
+@media (max-width: 575.98px) {
+  .navbar-icons .btn {
+    min-width: 38px;
+    min-height: 38px;
+    padding: 4px;
+  }
+
+  .navbar-icons .bell-btn {
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .bell-icon {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .help-icon,
+  .user-icon {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .icon-hex {
+    padding: 4px;
+  }
+
+  .navbar-icons {
+    gap: 0.5rem;
+  }
+}
