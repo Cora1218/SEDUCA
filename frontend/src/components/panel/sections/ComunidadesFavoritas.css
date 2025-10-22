@@ -6,6 +6,60 @@
  * Description: Styles for the ComunidadesFavoritas component.
  */
 
+/* Communities card section */
+/* Adjust height of favourite communities card */
+/* .comunidades-card {
+  height: 500px; 
+} */
+
+.comunidades-body {
+  min-height: 474px;
+}
+
+/* Hexagon image */
+.hexagon-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  clip-path: polygon(
+    25% 5%, 
+    75% 5%, 
+    100% 50%, 
+    75% 95%, 
+    25% 95%, 
+    0% 50%
+  );
+  transition: all 0.2s ease-in-out;
+}
+
+/* Communities in a single row (100% width) */
+.comunidad-responsive {
+  width: 100%;       /* always takes up the entire width */
+  /* max-width: 400px;  optional, so it doesn´t look huge on large screens */
+  padding: 10px 15px;
+  margin-bottom: 10px; /* space between rows */
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.comunidad-responsive:hover {
+  background-color: #e9f5ec;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.comunidad-responsive:last-child {
+  margin-bottom: 0; /* removes space from the last one */
+}
+
+.comunidad-responsive:hover .hexagon-img {
+  transform: scale(1.1);
+}
+
 .pagination .page-item .page-link {
   color: #000; 
   background-color: #ebebeb; 

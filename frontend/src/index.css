@@ -2,7 +2,7 @@
  * File: frontend/src/index.css
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-04
- * Last modified: 2025-10-15
+ * Last modified: 2025-10-22
  * Description: Styles for the main application layout, including responsive design and theming.
  */
 
@@ -128,48 +128,6 @@ a:hover {
 
 /* ------- File: frontend/src/pages/PanelPrincipal.jsx ------- */
 
-/* Allows the flex container to shrink without generating overflow */
-.nav-left { 
-  flex: 1 1 auto;     /* can expand and contract */
-  min-width: 0;       /* prevent overflow of the flex container */
-  overflow-x: auto;   /* allows horizontal scrolling if necessary */
-  flex-wrap: nowrap;
-  gap: 0.5rem;
-}
-
-/* Icon container on the right of navbar */
-.nav-icons-right {
-  flex-shrink: 0;     /* they do not shrink, always visible */
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.nav-icons-right button {
-  flex: 0 0 auto;   /* prevents icons from shrinking */
-  padding: 0.25rem; /* a small padding so that they do not become deformed */
-  min-width: 36px;  /* minimum width of each icon */
-  min-height: 36px; /* minimum height of each icon */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@media (max-width: 576px) {
-  .nav-icons-right button {
-    min-width: 28px;
-    min-height: 28px;
-  }
-}
-
-@media (max-width: 576px) {
-  .nav-icons-right svg {
-    width: 16px;
-    height: 16px;
-  }
-}
-
 /* PanelLayout with the same width as the navigation menu */
 .panel-container {
   margin-left: 2.3rem;   /* equal to px-3 of the nav */
@@ -192,77 +150,12 @@ a:hover {
   }
 }
 
-/* Communities card section */
-/* Adjust height of favourite communities card */
-/* .comunidades-card {
-  height: 500px; 
-} */
-
-.comunidades-body {
-  min-height: 474px;
-}
-
-/* Hexagon image */
-.hexagon-img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  clip-path: polygon(
-    25% 5%, 
-    75% 5%, 
-    100% 50%, 
-    75% 95%, 
-    25% 95%, 
-    0% 50%
-  );
-  transition: all 0.2s ease-in-out;
-}
-
-/* Communities in a single row (100% width) */
-.comunidad-responsive {
-  width: 100%;       /* always takes up the entire width */
-  /* max-width: 400px;  optional, so it doesn´t look huge on large screens */
-  padding: 10px 15px;
-  margin-bottom: 10px; /* space between rows */
-  border-radius: 8px;
-  background-color: #f8f9fa;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  font-weight: 500;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-}
-
-.comunidad-responsive:hover {
-  background-color: #e9f5ec;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
-}
-
-.comunidad-responsive:last-child {
-  margin-bottom: 0; /* removes space from the last one */
-}
-
-.comunidad-responsive:hover .hexagon-img {
-  transform: scale(1.1);
-}
-
 /* Calendar card section */
 .calendar-card {
   display: flex;
   flex-direction: column;
   min-height: 350px; /* before 400px*/
 }
-
-/* Icons on the right navigation bar */
-  .nav-icons-right button {
-    min-width: 32px;
-    min-height: 32px;
-  }
-
-  .nav-icons-right svg {
-    width: 18px;
-    height: 18px;
-  }
 
 /* Adjustments for large tablets (768px to 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
@@ -276,19 +169,6 @@ a:hover {
     min-width: 36px;
     min-height: 32px;
     font-size: 0.7rem;
-  }
-
-  /* Icons on the right navigation bar */
-  .nav-icons-right button {
-    min-width: 36px;
-    min-height: 36px;
-  }
-}
-
-@media (min-width: 992px) {
-  .nav-icons-right svg {
-    width: 20px;
-    height: 20px;
   }
 }
 
