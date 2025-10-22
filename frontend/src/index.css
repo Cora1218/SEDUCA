@@ -14,6 +14,8 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   /* background-color: #fff; before 242424 */
+  --verde-uaemex: #526855;
+  --oro-uaemex: #CA9E52; /*before 96841a*/
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -79,15 +81,15 @@ a:hover {
 }
 
 .border-line {
-  border-color: #526855;
+  border-color: var(--verde-uaemex);
 }
 
 .text-verde-uaemex {
-  color: #526855 !important;
+  color: var(--verde-uaemex);
 }
 
 .text-oro-uaemex {
-  color: #CA9E52; /*before 96841a*/
+  color: var(--oro-uaemex)
 }
 
 .text-gray-uaemex {
@@ -96,7 +98,7 @@ a:hover {
 
 .custom-link {
   text-decoration: none;
-  color: #526855;
+  color: var(--verde-uaemex);
 }
 
 .custom-link::before {
@@ -489,7 +491,7 @@ a:hover {
 }
 
 .bg-custom-green {
-  background-color: #526855 !important; /* before #2c5234 #57956d */
+  background-color: var(--verde-uaemex); /* before #2c5234 #57956d !important */
 }
 
 /* Smooth horizontal scrolling without a visible bar */

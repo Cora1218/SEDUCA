@@ -2,10 +2,11 @@
  * File: frontend/src/components/panel/sections/ComunidadesFavoritas.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-10-07
- * Last modified: 2025-10-15
+ * Last modified: 2025-10-22
  * Description: Component for displaying favorite communities.
  */
 
+import './ComunidadesFavoritas.css';
 import React, { useState, useEffect, useCallback } from "react";
 import { getCommunities } from "../../../services/communityService";
 import photo from "../../../assets/img/sinfoto.png";
@@ -15,10 +16,22 @@ const ComunidadesFavoritas = () => {
 const [communities, setCommunities] = useState([]); // Here we will store the data from /communities
 const [loading, setLoading] = useState(true);
 
-// location MUST be declared before any effect that uses it
+// Pagination
+const [currentPage, setCurrentPage] = useState(1); // Current page
+const [pageSize, setPageSize] = useState(5); // Initial 5 items per page
+
+// Calculate total number of pages
+const totalPages = Math.ceil(communities.length / pageSize);
+
+// location must be declared before any effect that uses it
 const location = useLocation();
 const isSinglePage = location.pathname === "/panel/comunidades";
 const titulo = isSinglePage ? "COMUNIDADES" : "COMUNIDADES FAVORITAS";
+
+// Just apply slice if we are on COMMUNITIES and there are communities
+const currentCommunities = (isSinglePage && communities.length > 0)
+  ? communities.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+  : communities || [];
 
 // Function to fetch communities (can be reused by effects or external events)
 const refreshCommunities = useCallback(() => {
@@ -26,6 +39,7 @@ const refreshCommunities = useCallback(() => {
   getCommunities()
     .then((data) => {
       setCommunities(data);
+      setCurrentPage(1); // <- Reboot the page when refreshing
       setLoading(false); // Data has loaded
     })
     .catch((error) => {
@@ -49,7 +63,7 @@ useEffect(() => {
 useEffect(() => {
   const handler = () => {
     // optional: console.log to help debug
-      refreshCommunities(); // always refresh regardless of the route
+    refreshCommunities(); // always refresh regardless of the route
   };
 
 window.addEventListener("refreshCommunities", handler);
@@ -58,6 +72,11 @@ return () => {
     window.removeEventListener("refreshCommunities", handler);
   };
 }, [refreshCommunities]);
+
+// This effect does scroll up every time the page changes
+useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, [currentPage]);
 
 return (
   <div className="card border-0 border-success">
@@ -95,11 +114,12 @@ return (
           </p>
         </div>
       ) : (
-        communities.map((community) => (
+        currentCommunities.map((community) => (
           <div
             key={community.CveEntAsg}
             className="comunidad-responsive border-bottom pb-2 mb-1 d-flex align-items-center"
           >
+
             {/* Imagen */}
             <div className="me-3">
               <img
@@ -139,9 +159,71 @@ return (
           </div>
         ))
       )}
+    {isSinglePage && (
+      <>
+        {/* Selector of page size */}
+        <div className="d-flex flex-wrap justify-content-center align-items-center mt-2 gap-2">
+          <label htmlFor="pageSizeSelect" className="small text-muted">
+            Mostrar:
+          </label>
+          <select
+            id="pageSizeSelect"
+            className="form-select form-select-sm w-auto page-size-select"
+            value={pageSize}
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
+              setCurrentPage(1); // reset to the first page when changed
+            }}
+          >
+            <option value={3}>3</option>
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+          </select>
+          <span className="page-size-label small text-muted">comunidades por página</span>
+        </div>
+        
+        {/* Show pagination only if there are more pages */}
+        {totalPages > 1 && (
+          <>
+            <nav className="mt-2">
+              <ul className="pagination justify-content-center flex-wrap mb-0">
+                <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+                  <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>
+                    Anterior
+                  </button>
+                </li>
+
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <li
+                    key={i}
+                    className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
+                  >
+                    <button className="page-link" onClick={() => setCurrentPage(i + 1)}>
+                      {i + 1}
+                    </button>
+                  </li>
+                ))}
+
+                  <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
+                    <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>
+                      Siguiente
+                    </button>
+                  </li>
+              </ul>
+            </nav>
+
+            {/* Page number text */}
+            <div className="text-center mt-2 small text-muted">
+              Página {currentPage} de {totalPages}
+            </div>
+          </>
+        )}
+      </>
+    )}
     </div>
   </div>
 );
 };
-
+  
 export default ComunidadesFavoritas;
