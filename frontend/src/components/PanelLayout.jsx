@@ -1,8 +1,8 @@
 /**
- * File: PanelLayout.jsx
+ * File: frontend/src/components/PanelLayout.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-08-22
- * Last modified: 2025-08-22
+ * Last modified: 2025-08-27
  * Description: Layout for main panel pages with adjustable margins and responsive row
  */
 

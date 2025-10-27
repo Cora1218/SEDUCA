@@ -2,7 +2,7 @@
  * File: frontend/src/components/panel/sections/ComunidadesFavoritas.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-10-07
- * Last modified: 2025-10-22
+ * Last modified: 2025-10-27
  * Description: Component for displaying favorite communities.
  */
 
@@ -104,7 +104,7 @@ return (
       </div>
     )}
 
-    <div className="comunidades-body border-0 d-flex flex-column align-items-start overflow-auto w-100">
+    <div className="comunidades-body border-0 d-flex flex-column align-items-start w-100">
       {loading ? (
         <p className="text-dark fs-6 fs-md-5">Cargando comunidades...</p>
       ) : communities.length === 0 ? (

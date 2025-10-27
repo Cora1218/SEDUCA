@@ -2,7 +2,7 @@
  * File: frontend/src/components/panel/Navbar.css
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-10-13
- * Last modified: 2025-10-14
+ * Last modified: 2025-10-27
  * Description: Styles for the main navigation component, including layout and responsive design.
  */
 
@@ -179,4 +179,23 @@
   .navbar-icons {
     gap: 0.5rem;
   }
+}
+
+/* ---------- Navbar sticky: se pega cuando llega al top del viewport ---------- */
+/* Dejar el navbar en el flujo normal; cuando su top llegue a la vista, se pega */
+.navbar {
+  position: relative;
+  width: 100%;                     /* se pega al top de la ventana cuando lo alcanza */
+  z-index: 1030;              /* por encima del contenido para que el contenido pase por debajo */
+  background-color: #ffffff;  /* asegura fondo sólido cuando quede pegado */
+  transition: box-shadow 0.3s ease;
+}
+
+/* Si quieres sombra solo cuando está efectivamente pegada, la añadimos vía clase JS (opcional) */
+.navbar.is-stuck {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }

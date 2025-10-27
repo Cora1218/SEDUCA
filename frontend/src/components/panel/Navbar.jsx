@@ -2,15 +2,31 @@
  * File: frontend/src/components/panel/Navbar.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-10-12
- * Last modified: 2025-10-15
+ * Last modified: 2025-10-27
  * Description: Main navigation component for the application, handling all navigation links.
  */
 
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { Bell, HelpCircle, User, Menu } from "lucide-react";
 
 function Navbar() {
+  useEffect(() => {
+    const navbar = document.querySelector(".navbar");
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add("is-stuck");
+      } else {
+        navbar.classList.remove("is-stuck");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow mb-4">
       <div className="container navbar-container">

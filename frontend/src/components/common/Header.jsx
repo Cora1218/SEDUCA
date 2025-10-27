@@ -2,7 +2,7 @@
  * File: frontend/src/components/common/Header.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-07-04
- * Last modified: 2025-10-09
+ * Last modified: 2025-10-27
  * Description: Component that displays the header section of the website.
  */
 import './Header.css';
@@ -11,7 +11,7 @@ function Header() {
   return (
     <header>
       {/* Pleca with green background image and icons on top of it */}
-      <div
+      {/* <div
         className="py-2 border-bottom"
         style={{
           backgroundImage: "url(/pleca-arriba_2021-2025.jpg)",
@@ -56,7 +56,7 @@ function Header() {
             <span className="text-normal">Buzón de atención universitaria</span>
           </a>
         </div>
-      </div>
+      </div> */}
 
       {/* Logo and title */}
       <div className="container-fluid row align-items-center justify-content-center">
