@@ -2,12 +2,13 @@
  * File: frontend/src/components/panel/sections/Calendario.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-10-12
- * Last modified: 2025-10-13
+ * Last modified: 2025-10-30
  * Description: Calendar component for the panel, displaying important dates and deadlines.
  */
 
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css"; // Calendar styles
+import "react-calendar/dist/Calendar.css"; // calendar styles
+import "./Calendario.css";
 
 const Calendario = ({ date, setDate }) => {
   return (
@@ -33,7 +34,7 @@ const Calendario = ({ date, setDate }) => {
         />
         
        {/* Calendar meaning letters */}
-        <div className="mt-1">
+        <div className="mt-1 calendar-legend">
           <p>
             <span className="fw-bold text-black">Nota:</span> la letra{" "}
             <span className="fw-bold text-black">A</span> indica la fecha límite

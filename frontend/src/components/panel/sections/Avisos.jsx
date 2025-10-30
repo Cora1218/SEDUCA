@@ -1,10 +1,12 @@
 /**
- * File: frontend/src/components/panel/sections/MisEbooks.jsx
+ * File: frontend/src/components/panel/sections/Avisos.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-10-12
- * Last modified: 2025-10-12
- * Description: Component for displaying user's ebooks.
+ * Last modified: 2025-10-30
+ * Description: Component for displaying user's notices.
  */
+
+import "./Avisos.css";
 
 const Avisos = () => {
   return (

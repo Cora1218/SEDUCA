@@ -1,0 +1,58 @@
+/**
+ * File: frontend/src/components/panel/sections/Calendario.css
+ * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
+ * Created on: 2025-10-30
+ * Last modified: 2025-10-30
+ * Description: Styles for calendar component.
+ */
+
+ /* Align the text of the note with the heading CALENDARIO */
+.calendar-legend {
+  margin-left: 0.4rem; /* adjust the left margin */
+}
+
+/* Makes the letters A larger within the caption */
+.calendar-legend span {
+  font-size: 1.1rem !important; 
+  font-weight: 700; 
+}
+
+/* Applies only to paragraphs within that section */
+.card-body .calendar-legend p {
+  font-size: 1rem; 
+  line-height: 1.4; 
+  margin-bottom: 1.35rem;   
+  color: #4a4a4a;           
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .calendar-legend {
+    margin-left: 0.8rem;
+  }
+  .calendar-legend span {
+    font-size: 1.2rem !important; 
+  }
+  .card-body .calendar-legend p {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 576px) {
+  .calendar-legend {
+    margin-left: 1rem;
+  }
+  .calendar-legend span {
+    font-size: 1.15rem !important;
+  }
+   .card-body .calendar-legend p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+}
+
+/* --- Force all days of the calendar (including Saturdays and Sundays) to be black --- */
+.react-calendar__month-view__days__day {
+  color: #000 !important; /* every day in black */
+}

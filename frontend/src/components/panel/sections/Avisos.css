@@ -1,0 +1,12 @@
+/**
+ * File: frontend/src/components/panel/sections/Avisos.css
+ * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
+ * Created on: 2025-10-29
+ * Last modified: 2025-10-30
+ * Description: Styles for Avisos component.
+ */
+ 
+.announcements-body .list-group-item {
+  border: none !important;
+  padding-left: 0 !important;
+}
