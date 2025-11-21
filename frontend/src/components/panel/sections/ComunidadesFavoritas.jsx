@@ -2,7 +2,7 @@
  * File: frontend/src/components/panel/sections/ComunidadesFavoritas.jsx
  * Created by: María Guadalupe Martínez Jiménez (mmartinezj004@uaemex.mx)
  * Created on: 2025-10-07
- * Last modified: 2025-10-30
+ * Last modified: 2025-11-20
  * Description: Component for displaying favorite communities.
  */
 
@@ -14,6 +14,7 @@ import { useLocation } from "react-router-dom";
 
 const ComunidadesFavoritas = () => {
 const [communities, setCommunities] = useState([]);
+const [allCommunities, setAllCommunities] = useState([]); // Complete fixed list
 const [loading, setLoading] = useState(true);
 
 // Pagination
@@ -29,7 +30,9 @@ const refreshCommunities = useCallback(() => {
   setLoading(true);
   getCommunities()
     .then((data) => {
-      setCommunities(data);
+      console.log("DATA LLEGADA:", data.length, data);
+      setAllCommunities(data); // Store complete list
+      setCommunities(data); // Show results
       setCurrentPage(1);
       setLoading(false);
     })
@@ -54,35 +57,68 @@ const refreshCommunities = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
-  const [filters, setFilters] = useState({});
 
-  const handleCheckboxChange = (field, option, checked) => {
-    setFilters((prev) => {
-      const updated = { ...prev };
-      if (checked) {
-        updated[field] = [...(updated[field] || []), option];
-      } else {
-        updated[field] = updated[field].filter((item) => item !== option);
-        if (updated[field].length === 0) delete updated[field];
+  // 1) User-selected filters (temporary)
+  const [selectedFilters, setSelectedFilters] = useState({}); // Here you store active filters as an object
+
+  // 2) Filters applied when you click “Search”
+  const [appliedFilters, setAppliedFilters] = useState({});
+
+  // It runs only when you click SEARCH
+  useEffect(() => {
+    const fetchFilteredCommunities = async () => {
+      try {
+        setLoading(true);
+
+        // Build filters to send
+        const filtersToSend = {};
+        Object.entries(appliedFilters).forEach(([key, values]) => {
+          if (values.length > 0) filtersToSend[key] = values.join(",");
+        });
+
+        const data = await getCommunities(filtersToSend);
+        setCommunities(data);
+        setCurrentPage(1);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error al obtener comunidades filtradas:", error);
+        setLoading(false);
       }
-      return updated;
-    });
+    };
+
+    // Si no hay filtros aplicados → carga normal
+    if (Object.keys(appliedFilters).length === 0) {
+      refreshCommunities();
+    } else {
+      fetchFilteredCommunities();
+    }
+  }, [appliedFilters, refreshCommunities]);
+  
+  const handleCheckboxChange = (field, option, checked) => {
+  setSelectedFilters((prev) => {
+    const updated = { ...prev };
+
+    if (checked) {
+      updated[field] = [...(updated[field] || []), option];
+    } else {
+      updated[field] = updated[field].filter((item) => item !== option);
+      if (updated[field].length === 0) delete updated[field];
+    }
+
+    return updated;
+  });
+};
+
+  const clearFilters = () => {
+    setSelectedFilters({});
+    setAppliedFilters({});
   };
-
-  const clearFilters = () => setFilters({});
-
-  const filteredCommunities = communities.filter((community) =>
-    Object.keys(filters).every((field) =>
-      filters[field]?.some(
-        (value) => String(community[field]).toLowerCase() === String(value).toLowerCase()
-      )
-    )
-  );
-
+ 
   const currentCommunities =
     isSinglePage && communities.length > 0
-      ? filteredCommunities.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+      ? communities.slice((currentPage - 1) * pageSize, currentPage * pageSize)
       : communities || [];
+
 
   return (
     <div className="card border-0 border-success">
@@ -108,42 +144,48 @@ const refreshCommunities = useCallback(() => {
             </button>
           </div>
 
+          {/* Collapsible panel with filters */}
           <div className="collapse" id="filterPanel">
             <div className="card card-body border-success">
               <div className="row g-2">
                 {[
-                  "CveEntAsg",
-                  "CveTpoMod",
-                  "programa",
-                  "bloque",
-                  "controlEscolar",
-                  "comunidad",
-                  "periodo",
-                  "grupo",
-                  "espacio",
-                  "perfil",
+                  // Here you define the real key that the backend brings (key) and the visible label (label)
+                  { key: "NomTpoMod", label: "Modalidad" },    
+                  { key: "NomTpoPer", label: "Bloque" },
+                  { key: "CveCtrEsc", label: "Control Escolar" },
+                  { key: "NomCicEsc", label: "Periodo" },
+                  { key: "NomGpoCom", label: "Grupo" },
+                  { key: "DesEntPrf", label: "Perfil" },
+                  { key: "NomEntPln", label: "Programa" },      
+                  { key: "NomEntAsg", label: "Comunidad" },
+                  { key: "NomEntEsp", label: "Espacio" }
+                  
+                  // { key: "CveEntAsg", label: "ID Asignatura" } 
                 ].map((field) => {
+                  // extract unique options based on the real key that comes in each community object
                   const options = [
                     ...new Set(
-                      communities.map((c) => c[field]).filter((v) => v !== null && v !== undefined && v !== "")
+                      allCommunities
+                        .map((c) => c[field.key]) // <-- Here we use field.key (e.g. NomTpoMod)
+                        .filter((v) => v !== null && v !== undefined && v !== "")
                     ),
                   ];
                   return (
-                    <div className="col-md-6 col-lg-4" key={field}>
-                      <label className="form-label text-success fw-bold text-capitalize">{field}</label>
+                    <div className="col-md-6 col-lg-4" key={field.key}>
+                      <label className="form-label text-success fw-bold">{field.label}</label>
                       <div className="border rounded p-2" style={{ maxHeight: "120px", overflowY: "auto" }}>
                         {options.length > 0 ? (
                           options.map((option) => (
-                            <div className="form-check" key={option}>
+                            <div className="form-check" key={`${field.key}-${option}`}>
                               <input
                                 className="form-check-input"
                                 type="checkbox"
-                                id={`${field}-${option}`}
+                                id={`${field.key}-${option}`}
                                 value={option}
-                                checked={filters[field]?.includes(option) || false}
-                                onChange={(e) => handleCheckboxChange(field, option, e.target.checked)}
+                                checked={selectedFilters[field.key]?.includes(option) || false}
+                                onChange={(e) => handleCheckboxChange(field.key, option, e.target.checked)}
                               />
-                              <label className="form-check-label small" htmlFor={`${field}-${option}`}>
+                              <label className="form-check-label small" htmlFor={`${field.key}-${option}`}>
                                 {option}
                               </label>
                             </div>
@@ -156,10 +198,23 @@ const refreshCommunities = useCallback(() => {
                   );
                 })}
               </div>
+
               <div className="d-flex justify-content-end mt-3">
-                <button className="btn btn-outline-danger btn-sm" onClick={clearFilters}>
-                  <i className="bi bi-x-circle"></i> Eliminar filtros
+                
+                <button 
+                  className="btn btn-success btn-sm me-2"
+                  onClick={() => setAppliedFilters(selectedFilters)}
+                >
+                  <i className="bi bi-search"></i> Buscar
                 </button>
+
+                <button 
+                  className="btn btn-outline-danger btn-sm" 
+                  onClick={clearFilters}
+                >
+                  <i className="bi bi-x-circle"></i> Limpiar filtros
+                </button>
+                
               </div>
             </div>
           </div>
@@ -175,7 +230,7 @@ const refreshCommunities = useCallback(() => {
           </div>
         ) : (
           currentCommunities.map((community) => (
-            <div key={community.CveEntAsg} className="comunidad-responsive border-bottom pb-2 mb-1 d-flex align-items-center">
+            <div key={community.CveEntCom} className="comunidad-responsive border-bottom pb-2 mb-1 d-flex align-items-center">
               <div className="me-3">
                 <img
                   src={photo}
@@ -190,23 +245,23 @@ const refreshCommunities = useCallback(() => {
                   <div className="small">{community.NomEntPln} (Dirección de Educación Continua y Digital)</div>
                 )}
                 <div className="small">
-                  <span className="fw-bold">Asesor:</span> {community.nomCompleto} / seduca@uaemex.mx
+                  <span className="fw-bold">Asesor:</span> {community.nomCompleto} / {community.CorEntInt}
                 </div>
                 <div className="small">
                   <span className="fw-bold">ID:</span> {community.CveEntCom}
                 </div>
                 <div className="small">
-                  <span className="fw-bold">Perfil:</span> {community.nPerfil}
+                  <span className="fw-bold">Perfil:</span> {community.DesEntPrf}
                 </div>
               </div>
             </div>
           ))
         )}
 
-        {/* Pagination Row */}
+        {/* Pagination row */}
         {isSinglePage && (
           <div className="d-flex flex-wrap justify-content-center align-items-center gap-3 mt-2">
-            {/* Mostrar selector */}
+            {/* Show selector */}
             <div className="d-flex align-items-center gap-2">
               <label htmlFor="pageSizeSelect" className="small text-muted">Mostrar:</label>
               <select
